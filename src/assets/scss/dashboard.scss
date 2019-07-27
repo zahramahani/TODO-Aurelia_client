@@ -1,0 +1,168 @@
+$menu-color:#e0e6e9;
+$back-color:#94b5bb;
+$addBtn:#BE7841;
+$board:white;
+$intenalBoard:#178294;
+$info:#178294;
+
+@mixin textOverFlow($width) {
+  width: $width;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+body {
+ 
+    font-size: 18px;
+    background-color:$back-color;
+
+    .container{
+        /*z*/
+        
+        width:100%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+       
+    .nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color:$back-color;
+    position: sticky;
+
+    .liNav{
+    float: left;
+    border: 1px solid darkgray;
+    border-radius: 10px 10px 0px 0px;
+
+    .aNav{
+
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    }
+    .aNav:hover{
+     background-color: $menu-color;
+     border: 1px solid $menu-color;
+    border-radius: 10px 10px 0px 0px;
+    }
+    .active {
+        background-color:$menu-color;
+        border: 1px solid $menu-color;
+        border-radius: 10px 10px 0px 0px;
+        
+    }
+    }
+    }
+
+.main-box{
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-sizing:border-box;
+    padding: 15px;
+    margin: 0px;
+    background-color:$menu-color;
+    border: 1px solid black;
+    border-radius: 5px;
+    justify-content: space-between;
+    height: 100%;
+    .BoardContent{
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width:63%; 
+    .Board{
+        background-color: $board;
+      
+        width: 48%;
+        height:550px;
+        box-sizing: border-box;
+        border-radius: 8px;
+     
+        margin-right: 15px;
+        margin-bottom: 15px;
+        border-style: ridge;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+
+            .BoardNumber{
+                
+                display: flex;
+                justify-content: center;
+                font-size: 40px;
+                padding-top: 20px;
+                align-content: center;
+                text-align: center;
+                margin: 0px;
+                
+
+            }
+            .description{
+              
+        
+                margin: auto 0 0 0;
+                margin-left: 60px;
+                margin-top: 10px;
+
+            }
+            .Done{
+                font-size: 40px;
+                padding-top: 20px;
+                display: flex;
+                margin: 0px;
+                justify-content: center;
+                color: $info;
+                max-height: 40px;
+
+            }
+            .all_image{
+                display:flex;
+                flex-direction:row;
+                justify-content: flex-end;
+                margin: 5px;
+               
+                .board_image{
+                    width: 70px;
+                    height: 70px;
+                    margin-left: -40px;
+                    border-radius: 100px;
+                    border-style: ridge;
+
+                }
+
+            }
+        
+    }
+}
+    .InternalBoard {
+// margin : 20px;
+background-color:$intenalBoard;
+font-size: 15px;
+padding: 10px;
+
+border-radius: 8px;
+display: flex;
+flex-direction: column;
+justify-content: start;
+width: 37%;
+height: 290px;
+text-align: left;
+box-sizing: border-box;
+border: 1px solid $intenalBoard;
+
+
+
+}
+
+}
+}
+}

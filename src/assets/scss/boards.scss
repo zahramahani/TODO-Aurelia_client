@@ -1,0 +1,252 @@
+$menu-color:#e0e6e9;
+$back-color:#94b5bb;
+
+$addBtn:#BE7841;
+$board:#88CDD7;
+$info:#178294;
+
+body {
+    box-sizing: border-box;
+}
+@mixin textOverFlow($width){
+    width:$width;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+
+}
+@mixin scrollbar() {
+    overflow-y: auto;
+    // margin-bottom: 25px;
+    &::-webkit-scrollbar-track {
+        // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color:$back-color;
+    }
+    &::-webkit-scrollbar {
+        width: 7px;
+        background-color:#F5F5F5;
+        border-radius:5px;
+    }
+    &::-webkit-scrollbar-thumb {
+        // border-radius: 10px;
+        // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: darkgray;
+        border-radius:5px;
+    }
+}
+
+
+body{
+    font-size: 20px;
+    background-color:$back-color;
+    .container{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    
+    .nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color:$back-color;
+    position: sticky;
+
+    .liNav{
+    float: left;
+    border: 1px solid $back-color;
+    border-radius: 10px 10px 0px 0px;
+
+    .aNav{
+
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    }
+    .aNav:hover{
+     background-color: $menu-color;
+     border: 1px solid $menu-color;
+    border-radius: 10px 10px 0px 0px;
+    }
+    .active {
+        background-color: $menu-color;
+        border: 1px solid $menu-color;
+    border-radius: 10px 10px 0px 0px;
+        
+    }
+    }
+    }
+    .main-box{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        box-sizing:border-box;
+        padding: 15px;
+        margin: 0px;
+        background-color:$menu-color;
+        border: 1px solid $menu-color;
+        border-radius: 5px;
+        height: 100%;
+
+        .div_partitioning{
+            width: 75% ;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .mainBoard{
+            background-color: white;
+            
+            font-size: 20px;
+            width: 100%;
+            height: 315px;
+            box-sizing: border-box;
+            border-radius: 8px;
+            padding: 10px;
+            text-align:left;
+            // border: 1px solid $menu-color;
+            // border-style: ridge;
+            display: flex;
+            margin: 0px;
+            // position: relative;
+                .div_mainBoardContent{
+                    // background-color: black;
+                    height: 100%;
+                    width: 75%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+                    .div_BoardNumber{
+                        // position: absolute;
+                        // left: 40px;
+                        // top:30px;
+                        width: 25%;
+                        font-size: 50px;
+                        margin-left:0px ;
+                        justify-content: start;
+                    }
+                    .div_owner{
+                        // position: absolute;
+                        // left: 40px;
+                        // bottom:30px;
+                        width: 25%;
+                    }
+                }
+                
+                .InternalBoard{
+                    background-color: $info;
+                
+                    width: 500px;
+                    height: 100%;
+                    border-radius: 8px;
+                    text-align:left;
+                    float: right;
+                    box-sizing: border-box;
+                    // border: 1px solid black;
+                    display: flex;
+
+                    .div_internalBoardContent{
+                        // background-color: black;
+                        height:100%;
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        box-sizing: border-box;
+                        display: flex;
+
+                        .div_imgMember{
+                            // background-color: black;
+                            width: 100%;
+                            height: 25%;
+                            padding: 15px;
+                            display: flex;
+                            flex-direction: row;
+                            box-sizing: border-box;    
+                        }
+
+                        .div_memberPosition{
+                            @include textOverFlow(50px);
+                            // background-color: black;
+                            width: 100%;
+                            height:10%;
+                            font-size: 20px;
+                            margin-left: 20px;
+                            display: flex;
+                            box-sizing: border-box;
+                        }
+                        .div_name_scroll{
+                            // max-height: 50px;
+                            // background-color: black;
+                            @include scrollbar();
+                            @include textOverFlow(10px);
+                            max-height: 500px;
+                            width: 100%;
+                            height: 40%;
+                            overflow: auto;
+                            font-size: 20px;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            margin-left: 20px;
+                            // background-color: black;
+                            max-width: 95%;
+                            max-height: 100%;
+                            // padding: 20px;
+                            box-sizing: border-box;
+                        }
+                        .div_MemberButton{
+                            // background-color: black;
+                            width: 100%;
+                            height:20%;
+                            display: flex;
+                            flex-direction: row-reverse;
+                            font-size: 20px;
+                            box-sizing: border-box;
+                        }
+                    }
+
+                    .MemberButton {
+                        background-color: $addBtn;
+                        color: white;
+                        width: 50px;
+                        height: 50px;
+                        text-align: center;
+                        border-radius: 50%;
+                        font-size: 30px;
+                        margin-right: 15px;
+                        justify-content: center;
+                        line-height: 50px;
+                        border: none;
+                        cursor: pointer;
+
+                    }
+                }
+            }
+            img{
+                width: 50px;
+                height: 50px;
+            }
+            .button {
+                cursor: pointer;
+                background-color: $addBtn;
+                border: none;
+                color: white;
+                font-size: 30px;
+                width: 100%;
+                height: 40px;
+                border-radius: 12px;
+                margin-top: 10px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center; 
+            }
+        }
+    }
+}
