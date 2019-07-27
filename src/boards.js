@@ -1,8 +1,6 @@
 
-
 import './assets/css/style.css'
 
-export class Boards
-{
+export class Boards {
 
 }

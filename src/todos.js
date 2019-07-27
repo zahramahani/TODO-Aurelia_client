@@ -1,7 +1,6 @@
 
-
 import './assets/css/style.css'
 
-export class Todos{
+export class Todos {
 
 }
