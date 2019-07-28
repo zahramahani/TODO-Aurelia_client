@@ -9,5 +9,6 @@ export class App {
       { route: ['boards'], name: 'boards', moduleId: PLATFORM.moduleName('./boards'), nav: true, title: 'boards', href: '/#/boards ' },
       { route: ['todos'], name: 'todos', moduleId: PLATFORM.moduleName('./todos'), nav: true, title: 'todos', href: '/#/todos ' }
     ])
+    config.mapUnknownRoutes('./not-found')
   }
 }
