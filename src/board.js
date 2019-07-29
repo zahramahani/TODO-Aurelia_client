@@ -1,6 +1,6 @@
-import './board.scss';
+import './board.scss'
 export class Board {
-  constructor() {
-    this.message = 'Hello world';
+  constructor () {
+    this.message = 'Hello world'
   }
 }
