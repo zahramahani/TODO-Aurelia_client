@@ -31,23 +31,19 @@
 //   }
 // }
 
-
-import { PLATFORM } from 'aurelia-pal';
+import { PLATFORM } from 'aurelia-pal'
 
 export class App {
-  configureRouter(config, router) {
-    config.title = 'Aurelia';
-    this.router = router;
+  configureRouter (config, router) {
+    config.title = 'Aurelia'
     config.map([
-      { route: ['', 'dashboard'], name: 'dashboard', moduleId: PLATFORM.moduleName('./dashboard'), nav: true, title: 'dashboard',href:'/#/dashboard' },
-      { route: ['board'], name: 'board', moduleId: PLATFORM.moduleName('./board'), nav: true, title: 'board',href:'/#/board' },
-      { route: ['todos'], name: 'todos', moduleId: PLATFORM.moduleName('./todos'), nav: true, title: 'todos' ,href:'/#/todos' },
-      { route: 'not-found',name:'not-found', moduleId: PLATFORM.moduleName('./not-found') }
-    ]);
-    config.fallbackRoute('board'); 
-    config.mapUnknownRoutes('not-found') ;
-  
+      { route: ['', 'dashboard'], name: 'dashboard', moduleId: PLATFORM.moduleName('./dashboard'), nav: true, title: 'Dashboard' },
+      { route: ['board'], name: 'board', moduleId: PLATFORM.moduleName('./board'), nav: true, title: 'Boards' },
+      { route: ['todos'], name: 'todos', moduleId: PLATFORM.moduleName('./todos'), nav: true, title: 'Todos' },
+      { route: 'not-found', name: 'not-found', moduleId: PLATFORM.moduleName('./not-found'), nav: false }
+    ])
+    config.fallbackRoute('board')
+    config.mapUnknownRoutes('not-found')
+    this.router = router
   }
 }
-
-

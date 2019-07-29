@@ -13,8 +13,14 @@
   <!-- <require from="./nav-bar.html"></require> -->
 
   <!-- <nav-bar router.bind="router"></nav-bar> -->
+  
+  <body>
+      <div class="container">
+            <require from="./navigationBar.html"></require>
+      <navigationBar router.bind="router"></navigationBar>
+      <router-view></router-view>
 
-  <div class="page-host">
-    <router-view></router-view>
- </div>
+      </div>
+  </body>
+    
 </template>
