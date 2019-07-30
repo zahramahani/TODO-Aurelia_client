@@ -1,5 +1,11 @@
+import './task.scss'
+import {bindable} from 'aurelia-framework';
 export class Task {
-  constructor() {
-    this.message = 'Hello world';
+  @bindable title;
+  @bindable done=null;
+  @bindable img;
+
+  constructor () {
+    this.message = 'Hello world'
   }
 }
