@@ -42,7 +42,7 @@ export class App {
       { route: ['todos'], name: 'todos', moduleId: PLATFORM.moduleName('./veiw/todos/todos'), nav: true, title: 'Todos' },
       { route: 'not-found', name: 'not-found', moduleId: PLATFORM.moduleName('./veiw/not-found/not-found'), nav: false }
     ])
-    config.fallbackRoute('not-found')
+    // config.fallbackRoute('not-found')
     config.mapUnknownRoutes('not-found')
     this.router = router
   }
