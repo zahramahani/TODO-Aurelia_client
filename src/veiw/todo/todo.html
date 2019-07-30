@@ -1,3 +1,14 @@
 <template>
-  <h1>${message}</h1>
+  <require from = "./../task/task"></require> 
+  <div class="todo">
+    <p class="head">todoTitle</p>
+    <input placeholder=" add new to do" class="addDo" value.bind = "newTask"
+    /><button click.delegate = "addTask()" class="btnAdd">+</button>
+    <hr>
+    <div class="all-tasks">
+      <div repeat.for="task of tasks">
+      <task title.bind = "task.title" img.bind = "task.img" done.bind = "task.done"></task>
+    </div>
+</div>
+</div>
 </template>
