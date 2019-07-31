@@ -1,42 +1,14 @@
 <template>
-    <!-- <body>
-        <div class="container">
-          
-                    <ul class="nav">
-                        <li class="liNav"><a route-href="route: dashboard" class="aNav">Dashboard</a></li>
-                        <li class="liNav"><a route-href="route: board" class=" active aNav">Boards</a></li>
-                        <li class="liNav"><a route-href="route: todos" class="aNav">Todos</a></li>
-                    </ul>  -->
+        <require from = "./../board-item/board-item"></require> 
             <div class="content">
                 <div class="div_partitioning">
                     <div class="main-box">
-                        <div class="mainBoard">
-                            <div class="div_mainBoardContent">
-                                <div class="div_BoardNumber"> board</div>
-                                <div class="div_owner"><strong>OWNER</strong>
-                                    <li>Sarah Khorashadizadeh</li>
-                                </div>
-                            </div>
-                            <div class="InternalBoard">
-                                <div class="div_internalBoardContent">
-                                    <div class="div_imgMember"><img src="pic.png" alt="MemberIcon"></div>
-                                    <div class="div_memberPosition">Member</div>
-                                    <div class="div_name_scroll">
-                                        <li>sara khorashadi</li>
-                                        <li>zahra amirmahani</li>
-                                        <li>sadegh baradaran</li>
-                                        <li>sadegh baradaran</li>
-                                        <li>sadegh baradaran</li>
-                                        <li>sadegh baradaran</li>
-                                    </div>
-                                    <div class="div_MemberButton"><button class="MemberButton">+</button></div>
-                                </div>
-                            </div>
+                    
+                    <div repeat.for="board-item of boards">
+                            <board-item board.bind = "board-item"></board-item>
                         </div>
                         <button class="button button">+</button>
                     </div>
                 </div>
             </div>
-        <!-- </div>
-    </body> -->
 </template>

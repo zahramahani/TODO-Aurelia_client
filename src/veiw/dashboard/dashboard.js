@@ -1,5 +1,5 @@
 import './dashboard.scss'
-import { Board } from '../../model/board'
+import { BoardModel } from '../../model/boardModel'
 // import { Todo } from '../../model/todo'
 import { User } from '../../model/user'
 
@@ -8,7 +8,7 @@ export class Dashboard {
     this.boards = []
     this.user = new User('z', 'a')
     this.user.setImage('pic.png')
-    this.board = new Board('board One', 'zahra')
+    this.board = new BoardModel('board One', 'zahra')
     this.board.addMember(this.user)
     this.boards.push(this.board)
   // this.boards.push(new Board("board One","zahra").addMember(new User("z","a").setImage("pic.png")))

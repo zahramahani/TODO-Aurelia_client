@@ -1,6 +1,6 @@
 
-export class Board {
-    name;
+export class BoardModel {
+    name='';
     done=null;
     owner;
     members=[];
@@ -13,7 +13,7 @@ export class Board {
     addMember(member){
         this.members.push(member);
     }
-    addTodos(todo){
+    addTodo(todo){
         this.todos.push(todo);
     }
     setDone(done){

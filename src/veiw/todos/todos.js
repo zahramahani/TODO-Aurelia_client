@@ -1,5 +1,5 @@
 import './todos.scss'
-import { Board } from './../../model/board'
+import { BoardModel } from '../../model/boardModel'
 import { Todo } from './../../model/todo'
 import { Task } from './../../model/task'
 export class Todos {
@@ -7,7 +7,7 @@ export class Todos {
   board;
   todos = [];
   constructor () {
-    this.board =new Board('board one','zahraAmirmahani')
+    this.board =new BoardModel('board one','zahraAmirmahani')
     this.todo1 = new Todo('todo1')
     this.todo2 = new Todo('todo2')
     this.todo3 = new Todo('todo3')
