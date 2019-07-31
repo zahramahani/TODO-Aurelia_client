@@ -1,3 +1,4 @@
+
 import './board-item.scss'
 export class BoardItem {
   constructor () {
