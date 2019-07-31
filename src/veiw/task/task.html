@@ -1,10 +1,13 @@
 <template>
-  <div class="task done"> 
-    <input type="checkbox"/>
-    <span>
-      ${title}
-    </span>
-    <img src="pic.png"/>
     <hr>
+  <div class="task done" > 
+    <input type="checkbox" value.bind="task.done"/>
+    <span>
+      ${task.title}
+    </span>
+  
+    <!-- <img src="${task.image}"/> -->
+    <img src="pic.png"/>
+    
 </div>
 </template>

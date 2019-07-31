@@ -13,7 +13,7 @@
         </div>
         <div class="todo-box">
                 <div repeat.for="todo of todos">
-                    <todo title.bind = "todo.title" tasks.bind = "todo.tasks" }></todo>
+                    <todo todo.bind = "todo"></todo>
                 </div>
 
             <button click.delegate = "addTodo()" class="add">+</button>
