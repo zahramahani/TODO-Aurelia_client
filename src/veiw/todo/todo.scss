@@ -1,0 +1,78 @@
+$menu-color:#e0e6e9;
+$back-color:#94b5bb;
+$back-search-color:white;
+$addBtn:#BE7841;
+$board:#88CDD7;
+$search:#178294;
+$toDoTitle:#178294;
+.todo{
+    margin: 10px; 
+    padding: 10px;
+    background-color: white;
+    width: 270px;
+    height: 400px;
+    box-sizing:border-box;
+    border: 1px solid $menu-color;
+    border-radius: 10px;
+    .head{
+        vertical-align: middle;
+        box-sizing:border-box;
+        padding-top:10px;
+        border: 1px solid $menu-color;
+        border-radius: 10px;
+        color: white;
+        background-color:$toDoTitle;
+        height:40px;
+        margin: 0px;
+        margin-bottom: 15px;
+        text-align:center;
+
+    }
+    .all-tasks{
+        overflow: auto;
+         max-height:235px;
+         overflow-y: auto;
+         // margin-bottom: 25px;
+         &::-webkit-scrollbar-track {
+         // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+         border-radius: 10px;
+         background-color:$back-color;
+         }
+         &::-webkit-scrollbar {
+         width: 7px;
+         background-color: #F5F5F5;
+         border-radius:5px; 
+         }
+         &::-webkit-scrollbar-thumb {
+         // border-radius: 10px;
+         // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+         background-color: darkgray;
+         border-radius:5px; 
+         }
+
+
+}
+    .addDo{
+       border: none;
+        color: black;
+        height: 50px;
+        box-sizing:border-box;
+        margin-left: 5px;
+        
+      
+       
+    }
+    .btnAdd{
+        cursor: pointer;
+        background: $addBtn;
+        border: 1px solid $menu-color;
+        border-radius: 20px;
+        float: right;
+        color:white;
+        box-sizing:border-box;
+        height:40px;
+        width: 40px;
+        margin:5px;
+
+    }
+}
