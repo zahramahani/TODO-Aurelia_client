@@ -2,6 +2,7 @@ import './board.scss'
 import { BoardModel } from '../../model/boardModel'
 import { Todo } from './../../model/todo'
 import { Task } from './../../model/task'
+import { timeout } from 'q';
 
 export class Board {
   boards = [];
@@ -23,6 +24,7 @@ export class Board {
     this.board.addTodo(this.todo1)
     this.board.addTodo(this.todo2)
     this.board.addTodo(this.todo3)
+    this.boards.push(this.board)
     this.boards.push(this.board)
   }
   addBoard(){
