@@ -9,7 +9,7 @@ $toDoTitle:#178294;
     margin: 10px; 
     padding: 10px;
     background-color: white;
-    width: 270px;
+    width: 273px;
     height: 400px;
     box-sizing:border-box;
     border: 1px solid $menu-color;
@@ -30,7 +30,7 @@ $toDoTitle:#178294;
     }
     .all-tasks{
         overflow: auto;
-         max-height:235px;
+         max-height:260px;
          overflow-y: auto;
          // margin-bottom: 25px;
          &::-webkit-scrollbar-track {
