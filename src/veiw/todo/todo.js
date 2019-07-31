@@ -7,11 +7,11 @@ export class Todo {
   @bindable title;
   @bindable done=null;
   @bindable tasks = [];
-  newTask = 'task';
+  newTask = '';
   constructor (title) {
     this.title= title;
   }
-  AddTask(){
+  addTask(){
     this.tempTask= new Task(this.newTask);
     this.tasks.push(this.tempTask);
   }

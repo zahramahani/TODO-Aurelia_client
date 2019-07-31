@@ -5,7 +5,8 @@ export class Task {
   @bindable done=null;
   @bindable img;
 
-  constructor () {
-    this.message = 'Hello world'
+  constructor (title) {
+    this.title = title
+  
   }
 }
