@@ -1,3 +1,22 @@
 <template>
-  <h1>${message}</h1>
+
+  <div class="mainBoard">
+    <div class="div_mainBoardContent">
+        <div class="div_BoardNumber">${board.name}</div>
+        <div class="div_owner"><strong>OWNER</strong>
+            <li>${board.owner}</li>
+        </div>
+    </div>
+    <div class="InternalBoard">
+        <div class="div_internalBoardContent">
+            <div class="div_imgMember"><img src="pic.png" alt="MemberIcon"></div>
+            <div class="div_memberPosition">Member</div>
+            <div repeat.for="member of board.members" class="div_name_scroll">
+                <li>${member.firstName}+" "+${member.lastName}</li>
+            </div>
+            <div class="div_MemberButton"><button class="MemberButton">+</button></div>
+        </div>
+    </div>
+</div>
+
 </template>
