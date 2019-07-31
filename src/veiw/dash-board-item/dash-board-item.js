@@ -1,9 +1,8 @@
+import './dash-board-item.scss'
+import {bindable} from "aurelia-framework"
 export class DashBoardItem {
-  @bindable boardName;
-  @bindable boardOwner;
-  @bindable done=null;
-  @bindable img = [];
+  
+  @bindable board;
   constructor() {
-    this.message = 'Hello world';
   }
 }

@@ -1,0 +1,66 @@
+$board:white;
+$info:#178294;
+.Board{
+    background-color: $board;
+  
+    width: 447px;
+    height:550px;
+    box-sizing: border-box;
+    border-radius: 8px;
+ 
+    margin-right: 15px;
+    margin-bottom: 15px;
+    border-style: ridge;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+        .BoardNumber{
+            
+            display: flex;
+            justify-content: center;
+            font-size: 40px;
+            padding-top: 20px;
+            align-content: center;
+            text-align: center;
+            margin: 0px;
+            
+
+        }
+        .description{
+          
+    
+            margin: auto 0 0 0;
+            margin-left: 60px;
+            margin-top: 10px;
+
+        }
+        .Done{
+            font-size: 40px;
+            padding-top: 20px;
+            display: flex;
+            margin: 0px;
+            justify-content: center;
+            color: $info;
+            max-height: 40px;
+
+        }
+        .all_image{
+            display:flex;
+            flex-direction:row;
+            justify-content: flex-end;
+            margin: 5px;
+           
+            .board_image{
+                width: 70px;
+                height: 70px;
+                margin-left: -40px;
+                border-radius: 100px;
+                border-style: ridge;
+
+            }
+
+        }
+    
+}
