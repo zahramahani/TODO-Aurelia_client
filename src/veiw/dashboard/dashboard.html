@@ -1,22 +1,9 @@
 <template>
+        <require from = "./../dash-board-item/dash-board-item"></require> 
     <div class="main-box">
         <div class="BoardContent">
-            <div  repeat.for="board of boards" class="Board">
-
-                <div class="BoardNumber">${board.name}</div>
-
-                <div class="Done">Done!</div>
-                <div class="description">
-                    <ul>
-                        <li>108 todos (1018 tasks) </li>
-                        <li>No remaining tasks</li>
-                        <li>${board.owner}(Owner)</li>
-                    </ul>
-                </div>
-
-                <div class='all_image'>
-                        <img  repeat.for="member of board.members"  class='board_image' src="${member.image}" alt="">
-                </div>
+            <div  repeat.for="board of boards">
+              <dash-board-item board.bind="board"></dash-board-item>
             </div>
         </div>
         <div class="InternalBoard">
