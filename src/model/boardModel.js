@@ -2,6 +2,7 @@
 export class BoardModel {
     name = ''
     done=null
+    delete=null
     owner;
     members=[];
     todos=[];
