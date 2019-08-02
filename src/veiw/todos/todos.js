@@ -5,6 +5,7 @@ import { Task } from './../../model/task'
 export class Todos {
   newTodo = 'todoTitle';
   board;
+  boards=[]
   todos = [];
   constructor () {
     this.board =new BoardModel('board one','zahraAmirmahani')
@@ -23,6 +24,12 @@ export class Todos {
     this.board.addTodo(this.todo1)
     this.board.addTodo(this.todo2)
     this.board.addTodo(this.todo3)
+    this.boards.push(this.board)
+
+    this.board1 =new BoardModel('board Two','zahraAmirmahani')
+    this.board1.addTodo(this.todo1)
+    this.board1.addTodo(this.todo2)
+    this.boards.push(this.board1)
   
   }
 
@@ -31,5 +38,9 @@ export class Todos {
     // this.todos.push(this.tempTodo)
     this.board.addTodo(this.tempTodo)
 
+  }
+  selectBoard(board){
+    console.log("vv")
+   this.board=board;
   }
 }

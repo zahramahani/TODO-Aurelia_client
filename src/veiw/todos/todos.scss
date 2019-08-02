@@ -87,15 +87,18 @@ body{
             background:$search;
              border: 1px solid $menu-color;
              border-radius: 5px;
-            display: table-cell;
+            display:flex;
             -webkit-appearance: button;
             appearance: button;
             outline: none;
             height:100%;
-            width:120px;
+            max-width:120px;
+            @include textOverFlow(100px);
             float: right;
             justify-content: center;
-            padding-left: 40px;
+             padding-left: 5px;
+             padding-right: 5px;
+
           
            
         } 
