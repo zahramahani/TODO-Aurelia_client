@@ -69,6 +69,39 @@ body{
         height: 100%;
         display: flex;
         justify-content: space-between;
+    
+        .form-popup-Todo{
+            // display :none;
+            // // width:100%;
+            // background-color:white ;
+            // flex-direction: column;
+            // border: 1px solid $menu-color;
+            // border-radius: 5px;
+            // padding-left:10px;
+            // margin-top:20px;
+            
+            margin: 10px; 
+            padding: 10px;
+            background-color: white;
+            width: 273px;
+            height: 400px;
+            box-sizing:border-box;
+            border: 1px solid $menu-color;
+            border-radius: 10px;
+            text-align: center;
+            .form-content-Todo{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding:10px 10px 10px 10px;
+            
+            .input-Todo{
+                text-align: center;
+                border:none;
+                height: 40px;
+            }
+        }
+        }
        
     .search{
         margin: 10px;
@@ -121,7 +154,7 @@ body{
     margin: 10px;
     width: 273px;
     height: 400px;
-     box-sizing:border-box;
+    box-sizing:border-box;
     background-color: $addBtn;
     border: 1px solid $menu-color;
     color: white;
@@ -129,6 +162,19 @@ body{
     font-size: 25px;
     cursor: pointer;
 
+    }
+    .button {
+        cursor: pointer;
+        background-color: $addBtn;
+        border: none;
+        color: white;
+        font-size: 30px;
+        width: 100%;
+        height: 40px;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center; 
     }
     
 
