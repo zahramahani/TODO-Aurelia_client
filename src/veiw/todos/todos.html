@@ -1,23 +1,44 @@
-<template> 
-     <require from = "./../todo/todo"></require> 
-        <div class="main-box">
+<template>
+    <require from="./../todo/todo"></require>
+    <div class="main-box">
         <div class="search">
             total number of ${board.todos.length} todo
-           
-           <select value.bind="selectedBoard" change.trigger="selectBoard($event)" class="btnSearch">
-                        <option repeat.for="board of boards"  model.bind="board">${board.name}</option>
-                        <!-- <option value="board2">board2</option>
+
+            <select value.bind="selectedBoard" change.trigger="selectBoard($event)" class="btnSearch">
+                <option repeat.for="board of boards" model.bind="board">${board.name}</option>
+                <!-- <option value="board2">board2</option>
                         <option value="board3">board3</option>
                         <option value="board4">board4</option> -->
             </select>
         </div>
-    <div class="todo-box">
-                <div repeat.for="todo of board.todos">
-                    <todo todo.bind = "todo"></todo>
-                </div>
+        <div class="todo-box">
+            <div repeat.for="todo of board.todos">
+                <todo todo.bind="todo"></todo>
+            </div>
 
-            <button click.delegate = "addTodo()" class="add">+</button>
+            <button class="add" click.delegate="openForm()">+</button>
+
+            <!-- changed -->
+            <!-- <button class= "button" click.delegate="openForm()">+</button>
+            <button click.delegate = "addTodo()" class="add">+</button> -->
+            <!-- changed -->
+
+
+
+            <!-- test -->
+            <div if.bind="flag" class="form-popup-Todo" id="myForm">
+                <form action="" class="form-content-Todo">
+                    <h1>New Todo</h1>
+                    <div>
+                        <input type="text" style="" class="input-Todo" value.bind="title" placeholder="Enter title" name="title"
+                            required>
+                    </div>
+                    <!-- <button type="submit" class= "add"  click.delegate="addTodo()">+</button> -->
+                    <button type="submit" class="button" click.delegate="addTodo()">Done</button>
+                </form>
+            </div>
+            <!-- test -->
         </div>
-        
-        </div>
+
+    </div>
 </template>
