@@ -11,10 +11,25 @@
         <div class="div_internalBoardContent">
             <div class="div_imgMember"><img src="pic.png" alt="MemberIcon"></div>
             <div class="div_memberPosition">Member</div>
-            <div repeat.for="member of board.members" class="div_name_scroll">
-                <li>${member.firstName}+" "+${member.lastName}</li>
+            <div  class="div_name_scroll">
+                <div repeat.for="member of board.members">
+                <li>${member.firstName}${member.lastName}</li>
             </div>
-            <div class="div_MemberButton"><button class="MemberButton">+</button></div>
+            </div>
+              
+            <div class="internal-form-popup" >
+                    <form action="" class="internal-form-content" id="Form" show.bind="add">
+                    <input type="text" class="internal-input" value.bind="firstName" placeholder="Enter members firstName" name="ownerFirstName" required>
+                    <input type="text" class="internal-input" value.bind="lastName" placeholder="Enter members lastName" name="ownerLastName" required>
+                </form>
+                    <div class="div_MemberButton"><button class="MemberButton" type="submit"click.delegate="addMember()">+</button></div>
+                
+                </div>
+          
+
+
+
+            <!-- <div class="div_MemberButton"><button class="MemberButton">+</button></div> -->
         </div>
     </div>
 </div>

@@ -3,6 +3,7 @@ import { User } from '../../model/user';
 import { BoardModel } from '../../model/boardModel';
 import './board-item.scss'
 export class BoardItem {
+  add;
  @bindable board;
  @bindable name;
  @bindable owner;
@@ -12,13 +13,22 @@ export class BoardItem {
   constructor (name,owner) {
     this.name=name;
     this.owner=owner;
+    this.add=true;
     
   }
   addMember(){
-    this.tempMember= new User(firstName,lastName);
-    // this.members.push(this.tempMember);
+    if(this.add){
+    this.tempMember= new User(this.firstName,this.lastName);
     this.board.addMember(this.tempMember);
+    this.firstName='';
+    this.lastName='';
+    this.add=false;
+  }else{
+    this.add=true;
   }
+
+  }
+
   editBoardItem(){
 
   }
