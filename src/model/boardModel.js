@@ -6,7 +6,7 @@ export class BoardModel {
     owner;
     members=[];
     todos=[];
-
+    addUser=true;
     constructor(name,owner) {
       this.name = name;
       this.owner = owner;
