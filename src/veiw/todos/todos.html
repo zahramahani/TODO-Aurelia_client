@@ -4,8 +4,8 @@
         <div class="search">
             total number of ${board.todos.length} todo
            
-           <select  onChange="selectBoard(value)" class="btnSearch">
-                        <option repeat.for="board of boards"  value.bind="board">${board.name}</option>
+           <select value.bind="selectedBoard" change.trigger="selectBoard($event)" class="btnSearch">
+                        <option repeat.for="board of boards"  model.bind="board">${board.name}</option>
                         <!-- <option value="board2">board2</option>
                         <option value="board3">board3</option>
                         <option value="board4">board4</option> -->
