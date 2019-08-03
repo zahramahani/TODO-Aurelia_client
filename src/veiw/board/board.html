@@ -4,10 +4,36 @@
                 <div class="div_partitioning">
                     <div class="main-box">
                     
-                    <div repeat.for="board-item of boards">
-                            <board-item board.bind = "board-item"></board-item>
+                    <div repeat.for="board of boards">
+                            <board-item board.bind = "board"></board-item>
                         </div>
-                        <button class="button button">+</button>
+                        
+                        <button class= "button" click.delegate="openForm()">+</button>
+                        
+                        <div class="form-popup" id="myForm">
+                        <form action="" class="form-content">
+                            <h1>new Board</h1>
+                            <div>
+                            <label for="boardName"><b>board Name</b></label>
+                            </div>
+                            <div>
+                            <input type="txt" class="input"  value.bind="boardName"placeholder="Enter board name" name="boardName" required>
+                            </div>
+                            
+                            <div>
+                            <label for="email"><b>Owner</b></label>
+                            </div>
+                            <div>
+                            <input type="text" class="input" value.bind="firstName" placeholder="Enter owner firstName" name="ownerFirstName" required>
+                            </div>
+                            <div>
+                            <input type="text" class="input" value.bind="lastName" placeholder="Enter owner lastName" name="ownerLastName" required>
+                            </div>
+
+                            <button type="submit"class= "button"  click.delegate="addBoard()">+</button>
+                        
+                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

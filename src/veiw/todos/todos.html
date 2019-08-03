@@ -2,16 +2,16 @@
      <require from = "./../todo/todo"></require> 
         <div class="main-box">
         <div class="search">
-            total number of 28 todo tasks
+            total number of ${board.todos.length} todo
            
-           <select class="btnSearch">
-                        <option value="board1">board1</option>
-                        <option value="board2">board2</option>
+           <select value.bind="selectedBoard" change.trigger="selectBoard($event)" class="btnSearch">
+                        <option repeat.for="board of boards"  model.bind="board">${board.name}</option>
+                        <!-- <option value="board2">board2</option>
                         <option value="board3">board3</option>
-                        <option value="board4">board4</option>
+                        <option value="board4">board4</option> -->
             </select>
         </div>
-        <div class="todo-box">
+    <div class="todo-box">
                 <div repeat.for="todo of board.todos">
                     <todo todo.bind = "todo"></todo>
                 </div>

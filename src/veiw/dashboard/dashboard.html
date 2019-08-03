@@ -3,7 +3,7 @@
     <div class="main-box">
         <div class="BoardContent">
             <div  repeat.for="board of boards">
-              <dash-board-item board.bind="board"></dash-board-item>
+              <dash-board-item board.bind="board" deleteBoard.call="deleteBoard(board)"></dash-board-item>
             </div>
         </div>
         <div class="InternalBoard">
