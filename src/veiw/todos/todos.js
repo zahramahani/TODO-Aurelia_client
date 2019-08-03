@@ -31,6 +31,7 @@ export class Todos {
     this.board1.addTodo(this.todo2)
     this.boards.push(this.board1)
   
+  
   }
 
   addTodo () {
@@ -40,7 +41,12 @@ export class Todos {
 
   }
   selectBoard(board){
-    console.log("vv")
-   this.board=board;
+    // debugger
+    // console.log(board,this.selectedBoard)
+
+   this.board=this.selectedBoard;
   }
+  // y(){
+  //   console.log(this.model)
+  // }
 }

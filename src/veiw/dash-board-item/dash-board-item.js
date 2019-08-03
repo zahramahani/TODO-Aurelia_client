@@ -29,9 +29,10 @@ export class DashBoardItem {
     return this.counter;
   }
   deleteBoard(){
-    if(this.delete){
-      this.board.delete=true;
-      //delete this board :)
-    }
+    // if(this.delete){
+    //   this.board.delete=true;
+    //   //delete this board :)
+    return this.board;
+    // }
   }
 }

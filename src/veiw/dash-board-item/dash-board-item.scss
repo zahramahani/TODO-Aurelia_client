@@ -2,9 +2,16 @@ $board:white;
 $info:#178294;
 $addBtn:#BE7841;
 $menu-color:#e0e6e9;
+
+// @mixin textOverFlow($width){
+//     width:$width;
+//     // white-space:nowrap;
+//     overflow:hidden;
+//     text-overflow:ellipsis;
+// }
 .Board{
     background-color: $board;
-  
+   
     width: 447px;
     height:550px;
     box-sizing: border-box;
@@ -38,7 +45,7 @@ $menu-color:#e0e6e9;
             align-content: center;
             text-align: center;
             margin: 0px;
-            
+            // @include textOverFlow(100px);
 
         }
         .description{

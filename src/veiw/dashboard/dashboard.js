@@ -40,4 +40,9 @@ export class Dashboard {
   setBoards (boards) {
     this.boards = boards
   }
+  deleteBoard(board){
+ 
+      this.boards.splice(board);
+      //delete this board :)
+  }
 }
