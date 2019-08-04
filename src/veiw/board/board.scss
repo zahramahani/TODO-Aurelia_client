@@ -102,8 +102,9 @@ body{
             padding:10px 10px 10px 10px;
             
             .input{
-                border:none;
+                // border:none;
                 height: 40px;
+                margin-bottom: 10px;
             }
         }
         }
@@ -118,7 +119,8 @@ body{
             .button {
                 cursor: pointer;
                 background-color: $addBtn;
-                border: none;
+                 border: none;
+                // border: 1px solid $menu-color;
                 color: white;
                 font-size: 30px;
                 width: 100%;
