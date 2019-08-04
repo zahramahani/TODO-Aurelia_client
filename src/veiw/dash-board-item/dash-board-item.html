@@ -15,7 +15,7 @@
     <div class='all_image'>
            
             <img  repeat.for="member of board.members"  class='board_image' src="${member.image}" alt="">
-            <button class="delete" if.bind="delete" click.delegate="deleteBoard">-</button>
+            <button class="delete" if.bind="delete" go.call="deleteBoard(board)">-</button>
             
     </div>
 </div>

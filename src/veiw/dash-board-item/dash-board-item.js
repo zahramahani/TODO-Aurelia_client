@@ -1,7 +1,7 @@
 import './dash-board-item.scss'
 import {bindable} from "aurelia-framework"
 export class DashBoardItem {
-  
+  @bindable deleteBoard;
   @bindable board;
   noTask=true;
   delete=false;
@@ -28,11 +28,10 @@ export class DashBoardItem {
     }
     return this.counter;
   }
-  deleteBoard(){
-    // if(this.delete){
-    //   this.board.delete=true;
-    //   //delete this board :)
-    return this.board;
-    // }
-  }
+  //   // if(this.delete){
+  //   //   this.board.delete=true;
+  //   //   //delete this board :)
+  //   return this.board;
+  //   // }
+  // }
 }
