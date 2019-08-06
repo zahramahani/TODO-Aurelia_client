@@ -3,6 +3,13 @@ import { BoardModel } from '../../model/boardModel'
 import { Todo } from './../../model/todo'
 import { Task } from './../../model/task'
 import { timeout } from 'q';
+// validation_part
+import {inject} from 'aurelia-dependency-injection';
+import {validationMessages} from 'aurelia-validation';
+import {ValidationControllerFactory,ValidationRules} from 'aurelia-validation';
+import {BootstrapFormRenderer} from './../../bootstrap-form-renderer';
+@inject(ValidationControllerFactory)
+// validation_part
 
 export class Board {
   boards = [];
@@ -10,7 +17,9 @@ export class Board {
   firstName='';
   lastName='';
 
-  constructor () {
+  constructor (controllerFactory) {
+    this.controller = controllerFactory.createForCurrentScope();
+    this.controller.addRenderer(new BootstrapFormRenderer());
     // this.board =new BoardModel('board one','zahraAmirmahani')
     // this.todo1 = new Todo('todo1')
     // this.todo2 = new Todo('todo2')
@@ -41,5 +50,25 @@ export class Board {
     document.getElementById("myForm").style.display = "flex";
   }
   
- 
+  submit(){
+    this.controller.validate().then(result=>{
+      if (result.valid) {
+        console.log('valid');
+        this.addBoard();
+        // this.title = 'add new task';
+        console.log(result);
+      } else {
+        console.log(result);
+      }
+    })
+    // .catch((e)=>{
+    //   console.log(e.stack);
+    // });
+  }
 }
+
+ValidationRules
+  .ensure(a => a.firstName).required()
+  .ensure(a => a.lastName).required()
+  .ensure(a => a.boardName).required()
+  .on(Board);
