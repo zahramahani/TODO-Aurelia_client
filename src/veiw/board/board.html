@@ -12,26 +12,33 @@
                         
                         <div class="form-popup" id="myForm">
                         <form action="" class="form-content">
+                                
                             <h1>new Board</h1>
                             <div>
                             <label for="boardName"><b>board Name</b></label>
                             </div>
-                            <div>
-                            <input type="txt" class="input"  value.bind="boardName"placeholder="Enter board name" name="boardName" required>
+                            
+                            <div class="form-group">
+                            <input type="txt" class="input"  value.bind="boardName & validate"placeholder="Enter board name" name="boardName" required>
+                            </div>
+                           <div>
+                            
+                            <label for="email"><b>Owner</b></label>
+                            
+                            </div>
+                            <div class="form-group">
+                            
+                            <input type="text" class="input" value.bind="firstName & validate" placeholder="Enter owner firstName" name="ownerFirstName" required>
                             </div>
                             
-                            <div>
-                            <label for="email"><b>Owner</b></label>
+                            <div class="form-group">
+                            
+                            <input type="text" class="input" value.bind="lastName & validate" placeholder="Enter owner lastName" name="ownerLastName" required>
+                            
                             </div>
-                            <div>
-                            <input type="text" class="input" value.bind="firstName" placeholder="Enter owner firstName" name="ownerFirstName" required>
+                            <button click.delegate="submit()" class= "button">DONE</button>
+                            <!-- <button type="submit" class= "button"  click.delegate="addBoard()">Done</button> -->
                             </div>
-                            <div>
-                            <input type="text" class="input" value.bind="lastName" placeholder="Enter owner lastName" name="ownerLastName" required>
-                            </div>
-
-                            <button type="submit"class= "button"  click.delegate="addBoard()">Done</button>
-                        
                         </form>
                         </div>
                     </div>
