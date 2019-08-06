@@ -30,10 +30,11 @@ export class BoardItem {
     if(this.add){
     this.tempMember= new User(this.firstName,this.lastName);
     this.board.addMember(this.tempMember);
-    this.firstName='';
-    this.lastName='';
+    this.firstName= null;
+    this.lastName= null;
     this.add=false;
-  }else{
+  }
+  else{
     this.add=true;
   }
 
@@ -43,20 +44,30 @@ export class BoardItem {
 
   }
   submit(){
+    if(this.add){
+
+
     this.controller.validate().then(result=>{
       if (result.valid) {
-        console.log('valid');
-        this.addMember();
+          console.log('valid');
+          this.addMember();
+          console.log(result);
         // this.title = 'add new task';
-        console.log(result);
       } else {
         console.log(result);
+        // this.add=true;
       }
     })
+  }else{
+    this.add=true;
+  }
     // .catch((e)=>{
     //   console.log(e.stack);
     // });
   }
+
+
+
 }
 ValidationRules
   .ensure(a => a.firstName).required()
