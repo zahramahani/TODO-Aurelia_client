@@ -3,10 +3,67 @@ import { BoardModel } from '../../model/boardModel'
 import { Todo } from '../../model/todo'
 import { User } from '../../model/user'
 import { Task } from './../../model/task'
+import { HttpClient, json } from 'aurelia-fetch-client';
+import { inject } from 'aurelia-framework';
 
+
+@inject(HttpClient)
 export class Dashboard {
-  constructor () {
+  boards = [];
+  attached() {
+    //this.loadPage();
+    this.getBoards();
+  }
+  getBoards() {
+    // httpClient.get('board')
+    //       .then(response => response)
+    //       .then(data => {
+    //         console.log(JSON.parse(data.response));
+    //       });
+    //   }
+    this.httpClient.fetch('board')
+      .then (response => response.json())
+      .then(data => {
+        console.log(data);
+        this.boards = data.map(element => Object.assign(new BoardModel(), element));
+        // console.log(JSON.parse(data.response))
+        // JSON.parse(data.response).forEach(function (element) {
+        //   console.log(element);
+        //   console.log(this.boards + "ddd")
+        //   this.boards.push(new BoardModel(element.name, 'zahra'))
+        });
+        // for (board of JSON.parse(data.response)){
+        //   console.log(board);
+        //   this.tempBoard=new BoardModel(board.name, 'zahra')
+        //   this.boards.push(this.tempBoard)
+        // }
+      // });
+  }
+  // getNumberOfTodos(id){
+  //   this.httpClient.get('todoNumber?boardId='+id+'')
+  //         .then(response => response)
+  //         .then(data => {
+  //           console.log(JSON.parse(data.response));
+  //         });
+  // }
+  // getNumberOfTasks(id){
+  //   this.httpClient.get('taskNumber?todoId='+id+'')
+  //   .then(response => response)
+  //   .then(data => {
+  //     console.log(JSON.parse(data.response));
+  //   });
+  // }
+  // loadPage(){
+  //  for (board of this.getBoards()){
+  //   tempBoard=new BoardModel(board.name, 'zahra')
+  //   this.boards.push(this.tempBoard)
+
+  //  }
+  // }
+  constructor(httpClient) {
+    this.httpClient = httpClient;
     this.boards = []
+
  
     this.user = new User('z', 'a')
     this.user.setImage('pic.png')
