@@ -18,13 +18,17 @@
             </div>
               
             <div class="internal-form-popup" >
-                    <form action="" class="internal-form-content" id="Form" show.bind="add">
-                    <input type="text" class="internal-input" value.bind="firstName" placeholder="Enter members firstName" name="ownerFirstName" required>
-                    <input type="text" class="internal-input" value.bind="lastName" placeholder="Enter members lastName" name="ownerLastName" required>
+                <form action="" class="internal-form-content" id="Form" show.bind="add">
+                    <div class="form-group">
+                        <input type="text" class="internal-input" value.bind="firstName & validate" placeholder="Enter members firstName" name="ownerFirstName" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="internal-input" value.bind="lastName & validate" placeholder="Enter members lastName" name="ownerLastName" required>
+                    </div>
+                    <!-- <div class="div_MemberButton"><button class="MemberButton" type="submit"click.delegate="submit()">+</button></div> -->
                 </form>
-                    <div class="div_MemberButton"><button class="MemberButton" type="submit"click.delegate="addMember()">+</button></div>
-                
-                </div>
+                <div class="div_MemberButton"><button class="MemberButton" type="submit"click.delegate="submit()">+</button></div>            
+            </div>
           
 
 
