@@ -30,11 +30,13 @@
                 <form action="" class="form-content-Todo">
                     <h1>New Todo</h1>
                     <div>
-                        <input type="text" style="" class="input-Todo" value.bind="title" placeholder="Enter title" name="title"
-                            required>
+                            <div class="form-group">
+                        <input type="text" style="" class="input-Todo" value.bind="title & validate" placeholder="Enter title" name="title">
+                        <button click.delegate="submit()" class= "button">+</button>
+                        </div>
                     </div>
                     <!-- <button type="submit" class= "add"  click.delegate="addTodo()">+</button> -->
-                    <button type="submit" class="button" click.delegate="addTodo()">Done</button>
+                    <!-- <button type="submit" class="button" click.delegate="addTodo()">Done</button> -->
                 </form>
             </div>
             <!-- test -->
