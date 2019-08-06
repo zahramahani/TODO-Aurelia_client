@@ -40,7 +40,7 @@ submit(){
     if (result.valid) {
       console.log('valid');
       this.addTask();
-      this.title = 'add new task';
+      // this.title = 'add new task';
       console.log(result);
     } else {
       console.log(result);
