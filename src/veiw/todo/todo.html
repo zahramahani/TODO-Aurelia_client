@@ -2,9 +2,10 @@
   <require from = "./../task/task"></require> 
   <div class="todo">
     <p class="head">${todo.title}</p>
-    <input placeholder=" add new to do" class="addDo" value.bind = "newTask"/>
-    <button click.delegate = "addTask()" class="btnAdd">+</button>
-
+    <div class="form-group">
+      <input placeholder=" add new task" class="addDo" value.bind = "title & validate">
+      <button click.delegate="submit()" class="btnAdd">+</button>
+    </div>
     <!-- <hr> -->
     <div class="all-tasks">
       <div repeat.for="task of todo.tasks">
