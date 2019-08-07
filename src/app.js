@@ -9,18 +9,10 @@ export class App {
   }
   attached(){
     this.httpClient.configure(x =>{
-      x.withBaseUrl('http://172.30.200.88:8081/api/');
+      x.withBaseUrl('http://localhost:3001/api/');
     })
 
-    this.httpClient.fetch(`tasks/1`, {
-      method: 'PUT',
-      body:"fffffff"
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      // this.todo.tasks = data.map(element => Object.assign(new Task(), element)); 
-    });
+    
   }
   configureRouter (config, router) {
     config.title = 'Aurelia'
