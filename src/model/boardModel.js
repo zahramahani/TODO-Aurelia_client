@@ -3,7 +3,7 @@ export class BoardModel {
     name = ''
     boardId;
     ownerId;
-    done=null
+    done;
     delete=null
     owner;
     members=[];
