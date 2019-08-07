@@ -1,18 +1,17 @@
 
-export class Task {
-    text;
-    done;
-    userId;
-    todoId;
-    taskId;
-
-    constructor(text) {
-      this.text = text;
-    }
+export class Task{
+  userId;
+  done;
+  text;
+  taskId;
+  todoId;
+  constructor(text) {
+    this.text = text;
+  }
     // setImage(image){
     //     this.image=image;
     // }
-    setDone(done){
-        this.done=done;
-    }
+  setDone(done){
+      this.done=done;
   }
+}

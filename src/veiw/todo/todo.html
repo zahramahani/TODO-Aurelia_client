@@ -1,9 +1,9 @@
 <template>
   <require from = "./../task/task"></require> 
   <div class="todo">
-    <p class="head">${todo.title}</p>
+    <p class="head">${todo.name}</p>
     <div class="form-group">
-      <input placeholder=" add new task" class="addDo" value.bind = "title & validate">
+      <input placeholder=" add new task" class="addDo" value.bind = "text & validate">
       <button click.delegate="submit()" class="btnAdd">+</button>
     </div>
     <!-- <hr> -->
