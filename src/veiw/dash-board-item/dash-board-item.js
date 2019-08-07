@@ -12,15 +12,21 @@ export class DashBoardItem {
   constructor(httpClient) {
     this.httpClient=httpClient;
   }
+  attached(){
+    this.getNumberOfTodos(this.board.boardId)
+  }
   getNumberOfTodos(id){
     // console.log(id)
     this.httpClient.fetch('todoNumber?boardId='+id)
       .then (response => response.json())
       .then(data => {
-        this.NumberOfTodos=data;
-        console.log("board-item"+data);
-        console.log(this.NumberOfTodos)
-        // this.boards = data.map(element => Object.assign(new BoardModel(), element));
+      
+        this.NumberOfTodos=JSON.parse(data);
+        console.log("board-item"+this.NumberOfTodos);
+        // this.NumberOfTodos=data.map(element => In.assign(new BoardModel(), element));
+        
+
+        
         });
   }
   getNumberOfTasks(id){
@@ -28,7 +34,6 @@ export class DashBoardItem {
       .then (response => response.json())
       .then(data => {
         console.log(data);
-        // this.boards = data.map(element => Object.assign(new BoardModel(), element));
         });
   }
    attached(){
