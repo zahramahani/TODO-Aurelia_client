@@ -11,8 +11,6 @@ export class App {
     this.httpClient.configure(x =>{
       x.withBaseUrl('http://localhost:3001/api/');
     })
-
-    
   }
   configureRouter (config, router) {
     config.title = 'Aurelia'
