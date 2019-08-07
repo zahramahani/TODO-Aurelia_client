@@ -1,11 +1,40 @@
 import './dash-board-item.scss'
 import {bindable} from "aurelia-framework"
+import { HttpClient, json } from 'aurelia-fetch-client';
+import { inject } from 'aurelia-framework';
+@inject(HttpClient)
 export class DashBoardItem {
+  NumberOfTodos;
   @bindable deleteBoard;
   @bindable board;
   noTask=true;
   delete=false;
-  constructor() {
+  constructor(httpClient) {
+    this.httpClient=httpClient;
+  }
+  getNumberOfTodos(id){
+    // console.log(id)
+    this.httpClient.fetch('todoNumber?boardId='+id)
+      .then (response => response.json())
+      .then(data => {
+        this.NumberOfTodos=data;
+        console.log("board-item"+data);
+        console.log(this.NumberOfTodos)
+        // this.boards = data.map(element => Object.assign(new BoardModel(), element));
+        });
+  }
+  getNumberOfTasks(id){
+    this.httpClient.fetch('taskNumber?todoId='+id)
+      .then (response => response.json())
+      .then(data => {
+        console.log(data);
+        // this.boards = data.map(element => Object.assign(new BoardModel(), element));
+        });
+  }
+   attached(){
+     console.log("attached")
+    this.NumberOfTodos=this.getNumberOfTodos(this.board.boardId)
+    console.log(this.NumberOfTodos)
   }
    getTodosNumber(){
   var counter=0;
