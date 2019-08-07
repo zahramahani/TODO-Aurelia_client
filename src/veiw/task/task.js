@@ -1,12 +1,36 @@
 import './task.scss'
 import {bindable} from 'aurelia-framework';
+import { HttpClient,json } from 'aurelia-fetch-client';
+import { inject } from 'aurelia-framework';
+@inject(HttpClient)
 export class Task {
-  @bindable title;
+ 
   // @bindable done=null;
   // @bindable img;
  @bindable task;
-  constructor (title) {
-    this.title = title
+ 
+
+ updateTask(){
+
+  console.log(this.task.done)
+  
+  this.httpClient.fetch(`tasks/${this.task.taskId}`, {
+    method: 'POST',
+    body:"fffffff"
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    // this.todo.tasks = data.map(element => Object.assign(new Task(), element)); 
+  });
+}
+
+
+
+
+
+  constructor (httpClient) {
+    this.httpClient=httpClient;
   
   }
 }

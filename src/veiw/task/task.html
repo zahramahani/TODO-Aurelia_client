@@ -1,9 +1,9 @@
 <template>
     <hr>
   <div class="task done" > 
-    <input type="checkbox" value.bind="task.done"/>
+    <input type="checkbox" checked.bind="task.done"  change.delegate='updateTask()'/>
     <span>
-      ${task.title}
+      ${task.text}
     </span>
   
     <!-- <img src="${task.image}"/> -->
