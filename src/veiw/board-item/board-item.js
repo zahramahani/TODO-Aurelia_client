@@ -5,11 +5,16 @@ import './board-item.scss'
 
 // validation_part
 import {inject} from 'aurelia-dependency-injection';
+// import { inject } from 'aurelia-framework';
 import {validationMessages} from 'aurelia-validation';
 import {ValidationControllerFactory,ValidationRules} from 'aurelia-validation';
 import {BootstrapFormRenderer} from './../../bootstrap-form-renderer';
-@inject(ValidationControllerFactory)
+//http
+import { HttpClient, json } from 'aurelia-fetch-client';
+
+// @inject(HttpClient)
 // validation_part
+@inject(ValidationControllerFactory, HttpClient)
 export class BoardItem {
   add;
  @bindable board;
@@ -18,14 +23,19 @@ export class BoardItem {
  @bindable members=[];
  firstName='';
  lastName='';
-  constructor (controllerFactory,name,owner) {
+ 
+  constructor (controllerFactory,name,owner,httpClient) {
+    this.httpClient=httpClient;
     this.controller = controllerFactory.createForCurrentScope();
     this.controller.addRenderer(new BootstrapFormRenderer());
     this.name=name;
     this.owner=owner;
     this.add=true;
+ 
     
   }
+  
+  
   addMember(){
     if(this.add){
     this.tempMember= new User(this.firstName,this.lastName);
