@@ -3,19 +3,47 @@ import { BoardModel } from '../../model/boardModel'
 import { Todo } from './../../model/todo'
 import { Task } from './../../model/task'
 // validation_part
-import {inject} from 'aurelia-dependency-injection';
+// import {inject} from 'aurelia-dependency-injection';
 import {validationMessages} from 'aurelia-validation';
 import {ValidationControllerFactory,ValidationRules} from 'aurelia-validation';
 import {BootstrapFormRenderer} from './../../bootstrap-form-renderer';
-@inject(ValidationControllerFactory)
 // validation_part
+import { HttpClient } from 'aurelia-fetch-client';
+import { inject } from 'aurelia-framework';
+
+
+
+
+@inject(ValidationControllerFactory,HttpClient)
+
 export class Todos {
   newTodo = '';//testchange 'todoTitle' to ''
   board;
   boards=[]
   todos = [];
   title='';
-  constructor (controllerFactory) {
+  attached(){
+      this.httpClient.fetch('board')
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          this.boards = data.map(element => Object.assign(new BoardModel(), element)); 
+        });
+    
+  }
+  
+  getBoardsTodos(id){
+    this.httpClient.fetch('todo?boardId='+id)
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          this.board.todos = data.map(element => Object.assign(new Todo(), element)); 
+        });
+  }
+
+
+  constructor (controllerFactory,httpClient) {
+    this.httpClient = httpClient;
     this.flag = false;
     this.board =new BoardModel('board one','zahraAmirmahani')
     this.controller = controllerFactory.createForCurrentScope();
@@ -70,6 +98,7 @@ export class Todos {
 
   selectBoard(board){
    this.board=this.selectedBoard;
+   this.getBoardsTodos(this.board.boardId);
   }
   // test
   openForm() {

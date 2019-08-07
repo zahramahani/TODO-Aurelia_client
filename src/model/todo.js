@@ -1,11 +1,12 @@
 
 export class Todo {
-    title;
+    name;
     tasks = [];
     done = null;
-
-    constructor(title) {
-      this.title = title;
+    boardId;
+    todoId;
+    constructor(name) {
+      this.name = name;
     }
     
     addTask(task){

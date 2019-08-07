@@ -1,15 +1,17 @@
 
 export class Task {
-    title
-    done=null
-    image
+    text;
+    done;
+    userId;
+    todoId;
+    taskId;
 
-    constructor(title) {
-      this.title = title;
+    constructor(text) {
+      this.text = text;
     }
-    setImage(image){
-        this.image=image;
-    }
+    // setImage(image){
+    //     this.image=image;
+    // }
     setDone(done){
         this.done=done;
     }
