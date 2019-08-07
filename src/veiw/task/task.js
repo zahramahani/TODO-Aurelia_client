@@ -14,9 +14,9 @@ export class Task {
 
   console.log(this.task.done)
   
-  this.httpClient.fetch(`tasks/${this.task.taskId}`, {
+  this.httpClient.fetch(`task/${this.task.taskId}`, {
     method: 'POST',
-    body:"fffffff"
+    body:json(this.task)
   })
   .then(response => response.json())
   .then(data => {
