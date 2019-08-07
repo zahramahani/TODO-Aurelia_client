@@ -21,7 +21,7 @@ export class Todos {
   board;
   boards=[]
   todos = [];
-  title='';
+  name='';
   attached(){
       this.httpClient.fetch('board')
         .then(response => response.json())
@@ -32,6 +32,25 @@ export class Todos {
     
   }
   
+  addTodo(){
+    let data={
+      boardId:this.board.boardId,
+      complete:true,
+      title:this.name}
+ 
+    this.httpClient.fetch(`todo`, {
+      method: 'POST',
+      body:json(data)
+    })
+    this.name = '';
+    this.httpClient.fetch('todo?boardId='+this.board.boardId)
+    .then(response => response.json())
+    .then(data => {
+      console.log('todos'+data);
+      this.board.todos = data.map(element => Object.assign(new Todo(), element)); 
+    });
+  }
+
   getBoardsTodos(id){
     this.httpClient.fetch('todo?boardId='+id)
         .then(response => response.json())
@@ -74,17 +93,19 @@ export class Todos {
   
   }
 
-  addTodo () {
-    this.flag = false;
-    this.tempTodo = new Todo(this.title)
-    // this.todos.push(this.tempTodo)
-    this.board.addTodo(this.tempTodo)
-    this.title = '';
-    //test 
-    // document.getElementById("myForm").style.display = "none";
-    // test
+  // addTodo () {
+  //   this.flag = false;
+  //   console.log(this.name);
+  //   this.tempTodo = new Todo(this.name)
+    
+  //   // this.todos.push(this.tempTodo)
+  //   this.board.addTodo(this.tempTodo)
+  //   this.name = '';
+  //   //test 
+  //   // document.getElementById("myForm").style.display = "none";
+  //   // test
 
-  }
+  // }
 
   addBoard(){
     this.tempBoard=new BoardModel(this.boardName,this.firstName+" "+this.lastName)
@@ -127,5 +148,5 @@ export class Todos {
 }
 
 ValidationRules
-  .ensure(a => a.title).required()
+  .ensure(a => a.name).required()
   .on(Todos);
