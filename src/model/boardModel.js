@@ -1,6 +1,8 @@
 
 export class BoardModel {
     name = ''
+    boardId;
+    ownerId;
     done=null
     delete=null
     owner;
