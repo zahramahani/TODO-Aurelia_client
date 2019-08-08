@@ -1,7 +1,9 @@
 
 export class BoardModel {
-    name = ''
-    boardId;
+
+    taskCount
+    name 
+    boardId
     ownerId;
     done;
     delete=null
