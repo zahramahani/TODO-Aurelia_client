@@ -53,8 +53,11 @@ export class Board {
       method: 'POST',
       body: JSON.stringify(data)
       })
-      console.log("oskole")
-      this.getBoards();
+      .then (response => response.json())
+      .then(data => {
+        this.getBoards();
+        });
+   
   }
    openForm() {
      console.log("open")
