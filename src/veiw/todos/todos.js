@@ -4,67 +4,75 @@ import { Todo } from './../../model/todo'
 import { Task } from './../../model/task'
 // validation_part
 // import {inject} from 'aurelia-dependency-injection';
-import {validationMessages} from 'aurelia-validation';
-import {ValidationControllerFactory,ValidationRules} from 'aurelia-validation';
-import {BootstrapFormRenderer} from './../../bootstrap-form-renderer';
+import { validationMessages } from 'aurelia-validation';
+import { ValidationControllerFactory, ValidationRules } from 'aurelia-validation';
+import { BootstrapFormRenderer } from './../../bootstrap-form-renderer';
 // validation_part
-import { HttpClient } from 'aurelia-fetch-client';
+import { HttpClient, json } from 'aurelia-fetch-client';
 import { inject } from 'aurelia-framework';
 
 
 
 
-@inject(ValidationControllerFactory,HttpClient)
+@inject(ValidationControllerFactory, HttpClient)
 
 export class Todos {
   newTodo = '';//testchange 'todoTitle' to ''
   board;
-  boards=[]
+  boards = []
   todos = [];
-  name='';
-  attached(){
-      this.httpClient.fetch('board')
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-          this.boards = data.map(element => Object.assign(new BoardModel(), element)); 
-        });
-    
+  name = '';
+  attached() {
+    this.httpClient.fetch('board')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        this.boards = data.map(element => Object.assign(new BoardModel(), element));
+        console.log(this.boards)
+
+        this.board = this.boards[0];
+        console.log(this.board);
+      });
+
   }
-  
-  addTodo(){
-    let data={
-      boardId:this.board.boardId,
-      complete:true,
-      title:this.name}
- 
+
+  addTodo(board) {
+    console.log('hal yaram bia' + board.boardId)
+    let data = {
+      boardId: board.boardId,
+      complete: true,
+      title: this.name
+    }
+
     this.httpClient.fetch(`todo`, {
       method: 'POST',
-      body:json(data)
+      body: json(data)
     })
     this.name = '';
-    this.httpClient.fetch('todo?boardId='+this.board.boardId)
-    .then(response => response.json())
-    .then(data => {
-      console.log('todos'+data);
-      this.board.todos = data.map(element => Object.assign(new Todo(), element)); 
-    });
+    this.httpClient.fetch('todo?boardId=' + this.board.boardId)
+      .then(response => response.json())
+      .then(data => {
+        console.log('todos' + data);
+        this.board.todos = data.map(element => Object.assign(new Todo(), element));
+      });
   }
 
-  getBoardsTodos(id){
-    this.httpClient.fetch('todo?boardId='+id)
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-          this.board.todos = data.map(element => Object.assign(new Todo(), element)); 
-        });
+  getBoardsTodos(id) {
+    this.httpClient.fetch('todo?boardId=' + id)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        this.board.todos = data.map(element => Object.assign(new Todo(), element));
+      });
   }
 
 
-  constructor (controllerFactory,httpClient) {
+  constructor(controllerFactory, httpClient) {
     this.httpClient = httpClient;
     this.flag = false;
-    this.board =new BoardModel('board one','zahraAmirmahani')
+
+
+    // this.board =new BoardModel('board one','zahraAmirmahani')
     this.controller = controllerFactory.createForCurrentScope();
     this.controller.addRenderer(new BootstrapFormRenderer());
     console.log(this.controller);
@@ -89,15 +97,15 @@ export class Todos {
     // this.board1.addTodo(this.todo1)
     // this.board1.addTodo(this.todo2)
     // this.boards.push(this.board1)
-  
-  
+
+
   }
 
   // addTodo () {
   //   this.flag = false;
   //   console.log(this.name);
   //   this.tempTodo = new Todo(this.name)
-    
+
   //   // this.todos.push(this.tempTodo)
   //   this.board.addTodo(this.tempTodo)
   //   this.name = '';
@@ -107,8 +115,8 @@ export class Todos {
 
   // }
 
-  addBoard(){
-    this.tempBoard=new BoardModel(this.boardName,this.firstName+" "+this.lastName)
+  addBoard() {
+    this.tempBoard = new BoardModel(this.boardName, this.firstName + " " + this.lastName)
     this.boards.push(this.tempBoard);
   }
 
@@ -117,24 +125,25 @@ export class Todos {
 
 
 
-  selectBoard(board){
-   this.board=this.selectedBoard;
-   this.getBoardsTodos(this.board.boardId);
+  selectBoard(board) {
+    this.board = this.selectedBoard;
+    this.getBoardsTodos(this.board.boardId);
   }
   // test
   openForm() {
     this.flag = true;
- }
+  }
   // test
   // y(){
   //   console.log(this.model)
   // }
 
-  submit(){
-    this.controller.validate().then(result=>{
+  submit() {
+    this.controller.validate().then(result => {
       if (result.valid) {
-        console.log('valid');
-        this.addTodo();
+        console.log(this.board)
+        console.log('lksn' + this.board.boardId);
+        this.addTodo(this.board);
         // this.title = 'add new task';
         console.log(result);
       } else {
