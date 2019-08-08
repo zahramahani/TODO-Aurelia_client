@@ -31,6 +31,7 @@ export class Todos {
         console.log(this.boards)
 
         this.board = this.boards[0];
+        this.getBoardsTodos(this.board.boardId);
         console.log(this.board);
       });
 
