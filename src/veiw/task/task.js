@@ -11,17 +11,17 @@ export class Task {
  
 
  updateTask(){
-
   console.log(this.task.done)
+  let data={
+    todoId:this.task.todoId,
+    userId:this.task.userId,
+    done:this.task.done,
+    text:this.task.text,
+  }
   
   this.httpClient.fetch(`task/${this.task.taskId}`, {
     method: 'POST',
-    body:json(this.task)
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    // this.todo.tasks = data.map(element => Object.assign(new Task(), element)); 
+    body:json(this.data)
   });
 }
 
