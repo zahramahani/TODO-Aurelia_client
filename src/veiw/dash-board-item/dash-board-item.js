@@ -46,7 +46,7 @@ export class DashBoardItem {
 
   }
   updateBoard() {
-    if (this.taskCount == 0) {
+    if (this.board.taskCount == 0) {
       this.board.done = true;
     }
   }
