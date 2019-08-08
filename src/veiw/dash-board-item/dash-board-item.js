@@ -6,6 +6,7 @@ import { inject } from 'aurelia-framework';
 @inject(HttpClient)
 export class DashBoardItem {
   NumberOfTodos;
+  flag=false;
   taskCount;
   @bindable deleteBoard;
   @bindable board;
@@ -16,11 +17,11 @@ export class DashBoardItem {
   attached() {
     this.getNumberOfTodos(this.board.boardId)
     this.getNumberOfTasks(this.board.boardId)
-    this.updateBoard()
+    this.getAllNumberOfTasks(this.board.boardId)
+ 
 
   }
   getNumberOfTodos(id) {
-    // console.log(id)
     this.httpClient.fetch('todoNumber?boardId=' + id)
       .then(response => response.json())
       .then(data => {
@@ -28,26 +29,22 @@ export class DashBoardItem {
       });
   }
   getNumberOfTasks(id) {
-    this.httpClient.fetch('todo?boardId='+id)
+    this.httpClient.fetch('taskNumber?boardId='+id)
       .then(response => response.json())
       .then(data => {
-        // console.log(data + "dddd");
-        // this.todos = data.map(element => Object.assign(new Todo(), element));
-        for (let todo of data) {
-          console.log("zahra")
-          this.httpClient.fetch('taskNumber?todoId='+todo.todoId)
-            .then(response => response.json())
-            .then(data => {
-              console.log(data + "4");
-              this.board.taskCount+= Number(data);
-            });
-        }
-      });
+              if (Number(data) === 0) {
+                this.board.done = true;
+                this.flag=true;
+              }
+        });
 
   }
-  updateBoard() {
-    if (this.board.taskCount == 0) {
-      this.board.done = true;
-    }
+  getAllNumberOfTasks(id) {
+    this.httpClient.fetch('allTaskNumber?boardId='+id)
+      .then(response => response.json())
+      .then(data => {
+              console.log(data + "4");
+              this.board.taskCount= Number(data)
+        });
   }
 }

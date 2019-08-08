@@ -3,7 +3,7 @@
      
     <div class="BoardNumber">${board.name}</div>
 
-    <div class="Done"><div if.bind="board.done">Done!</div></div>
+    <div class="Done"><div if.bind="flag">Done!</div></div>
     <div class="description">
         <ul>
             <li>${NumberOfTodos}  todos (${board.taskCount} tasks) </li>
