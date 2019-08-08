@@ -9,7 +9,7 @@ import { ValidationControllerFactory, ValidationRules } from 'aurelia-validation
 import { BootstrapFormRenderer } from './../../bootstrap-form-renderer';
 // validation_part
 //http_part
-import { HttpClient } from 'aurelia-fetch-client';
+import { HttpClient,json } from 'aurelia-fetch-client';
 import { inject } from 'aurelia-framework';
 //http_part
 
@@ -66,7 +66,7 @@ export class Todo {
     }
   }
   attached() {
-    fetchTasks();
+    this.fetchTasks();
   }
 
 
@@ -92,7 +92,7 @@ export class Todo {
       method: 'POST',
       body: json(data)
     })
-    fetchTasks();
+    this.fetchTasks();
   }
   setDone(done) {
     this.todo.done = done;
