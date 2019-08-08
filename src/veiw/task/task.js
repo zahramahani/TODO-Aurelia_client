@@ -11,7 +11,6 @@ export class Task {
  
 
  updateTask(){
-<<<<<<< HEAD
   let data={todoId:this.task.todoId,
     userId:this.task.userId,
     done:this.task.done,
@@ -21,29 +20,8 @@ export class Task {
   this.httpClient.fetch(`task/${this.task.taskId}`, {
     method: 'PUT',
     body:json(data)
-
-  
-
   })
-=======
-  console.log(this.task.done)
-  let data={
-    todoId:this.task.todoId,
-    userId:this.task.userId,
-    done:this.task.done,
-    text:this.task.text,
-  }
-  
-  this.httpClient.fetch(`task/${this.task.taskId}`, {
-    method: 'POST',
-    body:json(this.data)
-  });
->>>>>>> httpClient
 }
-
-
-
-
 
   constructor (httpClient) {
     this.httpClient=httpClient;

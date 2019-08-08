@@ -91,8 +91,10 @@ export class Todo {
     this.httpClient.fetch(`task`, {
       method: 'POST',
       body: JSON.stringify(data)
-    })
-    this.fetchTasks();
+    }).then(response => response.json())
+    .then(data => {
+     this.fetchTasks();
+    });
   }
   setDone(done) {
     this.todo.done = done;

@@ -47,14 +47,17 @@ export class Todos {
     this.httpClient.fetch(`todo`, {
       method: 'POST',
       body: json(data)
-    })
-    this.name = '';
-    this.httpClient.fetch('todo?boardId=' + this.board.boardId)
-      .then(response => response.json())
+    }).then(response => response.json())
       .then(data => {
-        console.log('todos' + data);
-        this.board.todos = data.map(element => Object.assign(new Todo(), element));
+        this.name = '';
+        this.httpClient.fetch('todo?boardId=' + this.board.boardId)
+          .then(response => response.json())
+          .then(data => {
+            console.log('todos' + data);
+            this.board.todos = data.map(element => Object.assign(new Todo(), element));
+          });
       });
+
   }
 
   getBoardsTodos(id) {
