@@ -6,7 +6,7 @@
     <div class="Done"><div if.bind="board.done">Done!</div></div>
     <div class="description">
         <ul>
-            <li>${NumberOfTodos}  todos (<span textcontent.bind="getTasksNumber()"> </span> tasks) </li>
+            <li>${NumberOfTodos}  todos (${board.taskCount} tasks) </li>
             <li if.bind="noTask">No remaining tasks</li>
             <li>${board.owner}(Owner)</li>
         </ul>
