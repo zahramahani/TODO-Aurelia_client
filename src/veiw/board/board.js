@@ -8,7 +8,9 @@ import {inject} from 'aurelia-dependency-injection';
 import {validationMessages} from 'aurelia-validation';
 import {ValidationControllerFactory,ValidationRules} from 'aurelia-validation';
 import {BootstrapFormRenderer} from './../../bootstrap-form-renderer';
-@inject(ValidationControllerFactory)
+import { HttpClient, json } from 'aurelia-fetch-client';
+
+@inject(ValidationControllerFactory ,HttpClient)
 // validation_part
 
 export class Board {
@@ -17,7 +19,8 @@ export class Board {
   firstName='';
   lastName='';
 
-  constructor (controllerFactory) {
+  constructor (controllerFactory ,httpClient) {
+    this.httpClient=httpClient;
     this.controller = controllerFactory.createForCurrentScope();
     this.controller.addRenderer(new BootstrapFormRenderer());
     // this.board =new BoardModel('board one','zahraAmirmahani')
@@ -44,6 +47,13 @@ export class Board {
     this.tempBoard=new BoardModel(this.boardName,this.firstName+" "+this.lastName)
     this.boards.push(this.tempBoard);
     document.getElementById("myForm").style.display = "none";
+
+    let data = {name:this.tempBoard.name,done:this.tempBoard.done,ownerId:1  }
+      this.httpClient.fetch(`board`, {
+      method: 'POST',
+      body: json(this.data)
+      })
+      
   }
    openForm() {
      console.log("open")
@@ -61,9 +71,23 @@ export class Board {
         console.log(result);
       }
     })
-    // .catch((e)=>{
-    //   console.log(e.stack);
-    // });
+    
+  }
+  attached() {
+    //this.loadPage();
+    this.getBoards();
+  }
+  getBoards() {
+    
+    this.httpClient.fetch('board')
+      .then (response => response.json())
+      .then(data => {
+        console.log(data);
+        this.boards = data.map(element => Object.assign(new BoardModel(), element));
+        
+        });
+        
+        
   }
 }
 

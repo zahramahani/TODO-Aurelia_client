@@ -16,9 +16,13 @@ export class Task {
     done:this.task.done,
     text:this.task.text}
   console.log(this.task.done)
+
   this.httpClient.fetch(`task/${this.task.taskId}`, {
     method: 'PUT',
     body:json(data)
+
+  
+
   })
 }
 

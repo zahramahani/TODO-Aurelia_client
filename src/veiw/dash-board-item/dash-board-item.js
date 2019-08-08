@@ -7,40 +7,55 @@ export class DashBoardItem {
   NumberOfTodos;
   @bindable deleteBoard;
   @bindable board;
+  todos=[]
   noTask=true;
   delete=false;
   constructor(httpClient) {
     this.httpClient=httpClient;
+  }
+  attached(){
+    this.getNumberOfTodos(this.board.boardId)
   }
   getNumberOfTodos(id){
     // console.log(id)
     this.httpClient.fetch('todoNumber?boardId='+id)
       .then (response => response.json())
       .then(data => {
-        this.NumberOfTodos=data;
-        console.log("board-item"+data);
-        console.log(this.NumberOfTodos)
-        // this.boards = data.map(element => Object.assign(new BoardModel(), element));
+       
+        this.NumberOfTodos=JSON.parse(data);
+        // console.log("board-item"+this.NumberOfTodos);
+        // this.NumberOfTodos=data.map(element => In.assign(new BoardModel(), element));
+        
+
+        
         });
   }
-  getNumberOfTasks(id){
-    this.httpClient.fetch('taskNumber?todoId='+id)
+  getNumberOfTasks(){
+    this.httpClient.fetch('todo')
       .then (response => response.json())
       .then(data => {
         console.log(data);
-        // this.boards = data.map(element => Object.assign(new BoardModel(), element));
+        todos=data.map(element => In.assign(new Todo(), element));
         });
+        for(todo of todos){
+          this.httpClient.fetch('taskNumber?todoId='+todo.todoId)
+      .then (response => response.json())
+      .then(data => {
+        console.log(data);
+        this.taskCount+=data
+        });
+        }
   }
    attached(){
      console.log("attached")
     this.NumberOfTodos=this.getNumberOfTodos(this.board.boardId)
-    console.log(this.NumberOfTodos)
+    // console.log(this.NumberOfTodos)
   }
-   getTodosNumber(){
-  var counter=0;
-  counter=this.board.todos.length;
-  return counter;
-  }
+  //  getTodosNumber(){
+  // var counter=0;
+  // counter=this.board.todos.length;
+  // return counter;
+  // }
    getTasksNumber(){
     var todo;
     this.counter=0;
