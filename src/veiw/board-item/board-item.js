@@ -41,8 +41,8 @@ export class BoardItem {
     this.tempMember= new User(this.userName);
     this.board.addMember(this.tempMember);
     this.userName=null;
-    this.firstName= null;
-    this.lastName= null;
+    // this.firstName= null;
+    // this.lastName= null;
     this.add=false;
   }
   else{
