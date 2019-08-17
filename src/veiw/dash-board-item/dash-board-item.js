@@ -16,14 +16,10 @@ export class DashBoardItem {
   }
   attached() {
     this.getNumberOfTodos(this.board.boardId)
-<<<<<<< HEAD
     this.getNumberOfTasks(this.board.boardId)
     this.getAllNumberOfTasks(this.board.boardId)
- 
-
-=======
     this.getOwnerName(this.board.ownerId)
->>>>>>> sarah_client
+
   }
   getNumberOfTodos(id) {
     this.httpClient.fetch('todoNumber?boardId=' + id)
@@ -59,12 +55,12 @@ export class DashBoardItem {
   // }
 
   getOwnerName(id){
-    console.log("hello")
-      this.httpClient.fetch('getUserName?userId='+id)
+    // console.log("hello")
+      this.httpClient.fetch('userName?userId='+id)
         .then (response => response.json())
-        console.log(data)
         .then(data => {
-  
+        console.log(data)
+        console.log("hello")
           this.board.owner=JSON.parse(data);
           // console.log("board-item"+this.NumberOfTodos);
           // this.NumberOfTodos=data.map(element => In.assign(new BoardModel(), element));
