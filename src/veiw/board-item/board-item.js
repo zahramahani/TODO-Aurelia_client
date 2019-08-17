@@ -24,7 +24,7 @@ export class BoardItem {
  firstName='';
  lastName='';
  
-  constructor (controllerFactory,name,owner,httpClient) {
+  constructor (controllerFactory,httpClient,name,owner) {
     this.httpClient=httpClient;
     this.controller = controllerFactory.createForCurrentScope();
     this.controller.addRenderer(new BootstrapFormRenderer());
@@ -75,7 +75,6 @@ export class BoardItem {
     //   console.log(e.stack);
     // });
   }
-
 
 
 }
