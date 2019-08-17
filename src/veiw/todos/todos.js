@@ -40,7 +40,7 @@ export class Todos {
   addTodo(board) {
     console.log('hal yaram bia' + board.boardId)
     let data = {
-      boardId: board.boardId,
+      boardId:board.boardId,
       complete: true,
       title: this.name
     }
