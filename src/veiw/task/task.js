@@ -20,15 +20,8 @@ export class Task {
   this.httpClient.fetch(`task/${this.task.taskId}`, {
     method: 'PUT',
     body:json(data)
-
-  
-
   })
 }
-
-
-
-
 
   constructor (httpClient) {
     this.httpClient=httpClient;

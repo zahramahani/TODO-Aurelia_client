@@ -31,6 +31,7 @@ export class Todos {
         console.log(this.boards)
 
         this.board = this.boards[0];
+        this.getBoardsTodos(this.board.boardId);
         console.log(this.board);
       });
 
@@ -47,14 +48,17 @@ export class Todos {
     this.httpClient.fetch(`todo`, {
       method: 'POST',
       body: json(data)
-    })
-    this.name = '';
-    this.httpClient.fetch('todo?boardId=' + this.board.boardId)
-      .then(response => response.json())
+    }).then(response => response.json())
       .then(data => {
-        console.log('todos' + data);
-        this.board.todos = data.map(element => Object.assign(new Todo(), element));
+        this.name = '';
+        this.httpClient.fetch('todo?boardId=' + this.board.boardId)
+          .then(response => response.json())
+          .then(data => {
+            console.log('todos' + data);
+            this.board.todos = data.map(element => Object.assign(new Todo(), element));
+          });
       });
+
   }
 
   getBoardsTodos(id) {
@@ -141,6 +145,7 @@ export class Todos {
   submit() {
     this.controller.validate().then(result => {
       if (result.valid) {
+        this.flag=false;
         console.log(this.board)
         console.log('lksn' + this.board.boardId);
         this.addTodo(this.board);

@@ -48,12 +48,16 @@ export class Board {
     this.boards.push(this.tempBoard);
     document.getElementById("myForm").style.display = "none";
 
-    let data = {name:this.tempBoard.name,done:this.tempBoard.done,ownerId:1  }
+    let data = {name:this.tempBoard.name,done:false,ownerId:1  }
       this.httpClient.fetch(`board`, {
       method: 'POST',
-      body: json(this.data)
+      body: JSON.stringify(data)
       })
-      
+      .then (response => response.json())
+      .then(data => {
+        this.getBoards();
+        });
+   
   }
    openForm() {
      console.log("open")
