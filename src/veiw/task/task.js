@@ -8,7 +8,7 @@ export class Task {
   // @bindable done=null;
   // @bindable img;
  @bindable task;
- 
+ @bindable changeColor
 
  updateTask(){
   let data={todoId:this.task.todoId,
@@ -20,7 +20,11 @@ export class Task {
   this.httpClient.fetch(`task/${this.task.taskId}`, {
     method: 'PUT',
     body:json(data)
-  })
+    
+  }) .then (response => response.json())
+  .then(data => {
+    this.changeColor(this.task.todoId);
+    });
 }
 
   constructor (httpClient) {

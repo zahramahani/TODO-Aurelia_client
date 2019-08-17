@@ -16,6 +16,7 @@ import { inject } from 'aurelia-framework';
 @inject(ValidationControllerFactory, HttpClient)
 export class Todo {
   @bindable todo
+  isDone
   text = '';
   // validation part
   controller = null;
@@ -30,41 +31,50 @@ export class Todo {
         this.todo.tasks = data.map(element => Object.assign(new Task(), element));
       });
   }
-
+ 
   //change color of todo when all taska mark as done
-  changeColor() { };
+  changeColor(id) { 
+    this.httpClient.fetch('doneTasks?todoId=' +id)
+      .then(response => response.json())
+      .then(data => {
+        console.log('tasks' + data);
+        if(Number(data)===0)
+        this.isDone=true;
+        
+      });
+  };
 
-  //update todo as complete
-  updateTodo() {
-    done = true;
-    for (task of this.todo.tasks) {
-      if (!task.done) {
-        done = false;
-        break;
-      }
-    }
-    if (done) {
-      complete = true;
-      changeColor();
-      let data = {
-        boardId: this.todo.boardId,
-        complete: true,
-        title: this.todo.title
-      }
+  // //update todo as complete
+  // updateTodo() {
+  //   done = true;
+  //   for (task of this.todo.tasks) {
+  //     if (!task.done) {
+  //       done = false;
+  //       break;
+  //     }
+  //   }
+  //   if (done) {
+  //     complete = true;
+  //     changeColor();
+  //     let data = {
+  //       boardId: this.todo.boardId,
+  //       complete: true,
+  //       title: this.todo.title
+  //     }
 
-      this.httpClient.fetch(`todo/${this.todo.todoId}`, {
-        method: 'POST',
-        body: json(data)
-      })
-      this.name = '';
-      this.httpClient.fetch('todo?boardId=' + this.board.boardId)
-        .then(response => response.json())
-        .then(data => {
-          console.log('todos' + data);
-          this.board.todos = data.map(element => Object.assign(new Todo(), element));
-        });
-    }
-  }
+  //     this.httpClient.fetch(`todo/${this.todo.todoId}`, {
+  //       method: 'POST',
+  //       body: json(data)
+  //     })
+  //     this.name = '';
+  //     this.httpClient.fetch('todo?boardId=' + this.board.boardId)
+  //       .then(response => response.json())
+  //       .then(data => {
+  //         console.log('todos' + data);
+  //         this.board.todos = data.map(element => Object.assign(new Todo(), element));
+  //       });
+  //   }
+  // }
   attached() {
     this.fetchTasks();
   }

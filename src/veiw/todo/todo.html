@@ -1,7 +1,7 @@
 <template>
   <require from = "./../task/task"></require> 
   <div class="todo">
-    <p class="head">${todo.name}</p>
+    <p class="head  ${isDone ? 'done' : ''}">${todo.name}</p>
     <div class="form-group">
       <input placeholder=" add new task" class="addDo" value.bind = "text & validate">
       <button click.delegate="submit()" class="btnAdd">+</button>
@@ -9,7 +9,7 @@
     <!-- <hr> -->
     <div class="all-tasks">
       <div repeat.for="task of todo.tasks">
-      <task task.bind="task"></task>
+      <task task.bind="task" change-color.call="changeColor(todo.todoId)"></task>
     </div>
 </div>
 </div>
