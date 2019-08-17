@@ -15,6 +15,7 @@ export class DashBoardItem {
   }
   attached(){
     this.getNumberOfTodos(this.board.boardId)
+    this.getOwnerName(this.board.ownerId)
   }
   getNumberOfTodos(id){
     // console.log(id)
@@ -78,4 +79,15 @@ export class DashBoardItem {
   //   return this.board;
   //   // }
   // }
-}
+
+  getOwnerName(id){
+      this.httpClient.fetch('getUserName?userId='+id)
+        .then (response => response.json())
+        .then(data => {
+  
+          this.board.owner=JSON.parse(data);
+          // console.log("board-item"+this.NumberOfTodos);
+          // this.NumberOfTodos=data.map(element => In.assign(new BoardModel(), element));
+          });
+    }
+  }
