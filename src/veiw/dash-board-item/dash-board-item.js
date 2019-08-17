@@ -43,7 +43,7 @@ export class DashBoardItem {
     this.httpClient.fetch('allTaskNumber?boardId='+id)
       .then(response => response.json())
       .then(data => {
-              console.log(data + "4");
+              console.log(data + "d");
               this.board.taskCount= Number(data)
         });
   }
@@ -55,15 +55,14 @@ export class DashBoardItem {
   // }
 
   getOwnerName(id){
-    // console.log("hello")
+
+    console.log(" in get owner name")
       this.httpClient.fetch('userName?userId='+id)
         .then (response => response.json())
         .then(data => {
-        console.log(data)
-        console.log("hello")
-          this.board.owner=JSON.parse(data);
-          // console.log("board-item"+this.NumberOfTodos);
-          // this.NumberOfTodos=data.map(element => In.assign(new BoardModel(), element));
+          console.log(data)
+          this.board.owner=data;
+
           });
     }
   }
