@@ -24,11 +24,7 @@ export class BoardItem {
  lastName='';
  userName='';
  
-<<<<<<< HEAD
-  constructor (controllerFactory,httpClient,name,owner) {
-=======
   constructor (controllerFactory,httpClient) {
->>>>>>> 4c202b8374f892a42112605add4ed4544efc51fc
     this.httpClient=httpClient;
     this.controller = controllerFactory.createForCurrentScope();
     this.controller.addRenderer(new BootstrapFormRenderer());
