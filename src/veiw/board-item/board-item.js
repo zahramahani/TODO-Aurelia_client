@@ -23,6 +23,7 @@ export class BoardItem {
  firstName='';
  lastName='';
  userName='';
+ userId;
  
   constructor (controllerFactory,httpClient) {
     this.httpClient=httpClient;
@@ -38,17 +39,48 @@ export class BoardItem {
   
   addMember(){
     if(this.add){
-    this.tempMember= new User(this.userName);
-    this.board.addMember(this.tempMember);
-    this.userName=null;
+    // this.tempMember= new User(this.userName);
+    // this.board.addMember(this.tempMember);
+    // this.userName=null;
     // this.firstName= null;
     // this.lastName= null;
+
+    this.httpClient.fetch('getuserIdByUserName?userName=' + this.userName)
+    .then(response => response.json())
+    .then(data => {
+      console.log("helloId")
+      console.log(data);
+     this.userId = data;
+    });
+    let data = {
+      boardId: this.board.boardId,
+      userId: this.userId,
+    }
+    this.httpClient.fetch(`addMemberToBoard`, {
+      method: 'POST',
+      body: JSON.stringify(data)
+    }).then(response => response.json())
+    .then(data => {
+     this.fetchMembers();
+    });
+
     this.add=false;
+    this.userName=null;
   }
   else{
     this.add=true;
   }
 
+  }
+
+  fetchMember(){
+    this.httpClient.fetch('getMember?boardId=' + this.board.boardId)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+     this.userId = data;
+     this.board.Members = data.map(element => Object.assign(new user(), element));
+    });
   }
 
   editBoardItem(){
