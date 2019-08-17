@@ -81,8 +81,10 @@ export class DashBoardItem {
   // }
 
   getOwnerName(id){
+    console.log("hello")
       this.httpClient.fetch('getUserName?userId='+id)
         .then (response => response.json())
+        console.log(data)
         .then(data => {
   
           this.board.owner=JSON.parse(data);
