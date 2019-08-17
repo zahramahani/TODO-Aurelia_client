@@ -163,9 +163,7 @@ module.exports = ({ production, server, extractCss, coverage, analyze, karma } =
         changeOrigin: true,
         secure: false
       }
-<<<<<<< HEAD
-    ]
-=======
+
       // {
       //   path: '/service/**',
       //   target: 'http://192.168.5.75:127',
@@ -181,7 +179,6 @@ module.exports = ({ production, server, extractCss, coverage, analyze, karma } =
     ]
     // serve index.html for all 404 (required for push-state)
     // historyApiFallback: true
->>>>>>> sarah_client
   },
   devtool: production ? 'nosources-source-map' : 'cheap-module-eval-source-map',
   module: {
