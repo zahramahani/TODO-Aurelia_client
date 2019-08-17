@@ -3,11 +3,12 @@ export class User {
     firstName;
     lastName;
     image;
+    userName
     
 
-    constructor(firstName,lastName) {
-      this.firstName = firstName;
-      this.lastName = lastName;
+    constructor(userName) {
+      this.userName = userName;
+ 
     }
     setImage(image){
         this.image=image;

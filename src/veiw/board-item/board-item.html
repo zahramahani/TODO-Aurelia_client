@@ -13,17 +13,14 @@
             <div class="div_memberPosition">Member</div>
             <div  class="div_name_scroll">
                 <div repeat.for="member of board.members">
-                <li>${member.firstName}${member.lastName}</li>
+                <li>${member.userName}</li>
             </div>
             </div>
               
             <div class="internal-form-popup" >
                 <form action="" class="internal-form-content" id="Form" show.bind="add">
                     <div class="form-group">
-                        <input type="text" class="internal-input" value.bind="firstName & validate" placeholder="Enter members firstName" name="ownerFirstName" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="internal-input" value.bind="lastName & validate" placeholder="Enter members lastName" name="ownerLastName" required>
+                        <input type="text" class="internal-input" value.bind="userName & validate" placeholder="Enter members userName" name="userName" required>
                     </div>
                     <!-- <div class="div_MemberButton"><button class="MemberButton" type="submit"click.delegate="submit()">+</button></div> -->
                 </form>

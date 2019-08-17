@@ -44,7 +44,7 @@ export class Board {
     
   }
   addBoard(){
-    this.tempBoard=new BoardModel(this.boardName,this.firstName+" "+this.lastName)
+    this.tempBoard=new BoardModel(this.boardName,"I will come from token")
     this.boards.push(this.tempBoard);
     document.getElementById("myForm").style.display = "none";
 
@@ -80,6 +80,7 @@ export class Board {
   attached() {
     //this.loadPage();
     this.getBoards();
+    
   }
   getBoards() {
     
@@ -96,7 +97,5 @@ export class Board {
 }
 
 ValidationRules
-  .ensure(a => a.firstName).required()
-  .ensure(a => a.lastName).required()
   .ensure(a => a.boardName).required()
   .on(Board);
