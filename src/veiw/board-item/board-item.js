@@ -2,9 +2,10 @@ import {bindable} from "aurelia-framework"
 import { User } from '../../model/user';
 import { BoardModel } from '../../model/boardModel';
 import './board-item.scss'
+import { inject } from 'aurelia-framework';
 
 // validation_part
-import {inject} from 'aurelia-dependency-injection';
+
 // import { inject } from 'aurelia-framework';
 import {validationMessages} from 'aurelia-validation';
 import {ValidationControllerFactory,ValidationRules} from 'aurelia-validation';
@@ -14,34 +15,38 @@ import { HttpClient, json } from 'aurelia-fetch-client';
 
 // @inject(HttpClient)
 // validation_part
-@inject(ValidationControllerFactory, HttpClient)
+@inject(ValidationControllerFactory,HttpClient)
 export class BoardItem {
   add;
  @bindable board;
- @bindable name;
- @bindable owner;
  @bindable members=[];
  firstName='';
  lastName='';
+ userName='';
  
+<<<<<<< HEAD
   constructor (controllerFactory,httpClient,name,owner) {
+=======
+  constructor (controllerFactory,httpClient) {
+>>>>>>> 4c202b8374f892a42112605add4ed4544efc51fc
     this.httpClient=httpClient;
     this.controller = controllerFactory.createForCurrentScope();
     this.controller.addRenderer(new BootstrapFormRenderer());
-    this.name=name;
-    this.owner=owner;
     this.add=true;
  
     
   }
-  
+  attached(){
+    this.getOwnerName(this.board.ownerId)
+  }
   
   addMember(){
     if(this.add){
-    this.tempMember= new User(this.firstName,this.lastName);
+    this.tempMember= new User(this.userName);
     this.board.addMember(this.tempMember);
-    this.firstName= null;
-    this.lastName= null;
+    this.userName=null;
+    // this.firstName= null;
+    // this.lastName= null;
     this.add=false;
   }
   else{
@@ -75,10 +80,20 @@ export class BoardItem {
     //   console.log(e.stack);
     // });
   }
+  getOwnerName(id){
+    console.log(" in get owner name")
+      this.httpClient.fetch('userName?userId='+id)
+        .then (response => response.json())
+        .then(data => {
+          console.log(data)
+          this.board.owner=data;
+          this.temMember= new User(this.board.owner);
+          this.board.addMember(this.temMember)
+          });
+        }
 
 
 }
 ValidationRules
-  .ensure(a => a.firstName).required()
-  .ensure(a => a.lastName).required()
+  .ensure(a => a.userName).required()
   .on(BoardItem);
