@@ -150,9 +150,34 @@ module.exports = ({ production, server, extractCss, coverage, analyze, karma } =
   },
   performance: { hints: false },
   devServer: {
+    // contentBase: outDir,
     contentBase: outDir,
     // serve index.html for all 404 (required for push-state)
-    historyApiFallback: true
+    historyApiFallback: true,
+    host: '0.0.0.0',
+    port: 8080,
+    proxy: [
+      {
+        path: '/api/**',
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        secure: false
+      }
+      // {
+      //   path: '/service/**',
+      //   target: 'http://192.168.5.75:127',
+      //   changeOrigin: true,
+      //   secure: false
+      // },
+      // {
+      //   path: '/public/**',
+      //   target: 'http://192.168.5.75:127',
+      //   changeOrigin: true,
+      //   secure: false
+      // },
+    ]
+    // serve index.html for all 404 (required for push-state)
+    // historyApiFallback: true
   },
   devtool: production ? 'nosources-source-map' : 'cheap-module-eval-source-map',
   module: {
