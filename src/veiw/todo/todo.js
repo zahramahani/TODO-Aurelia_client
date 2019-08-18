@@ -38,8 +38,8 @@ export class Todo {
       .then(response => response.json())
       .then(data => {
         console.log('tasks' + data);
-        if(Number(data)===0)
-        this.isDone=true;
+        if(Number(data)===0){
+        this.isDone=true;}else{this.isDone=false;}
         
       });
   };
