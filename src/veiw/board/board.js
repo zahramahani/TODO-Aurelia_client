@@ -47,6 +47,7 @@ export class Board {
     this.tempBoard=new BoardModel(this.boardName,"I will come from token")
     this.boards.push(this.tempBoard);
     document.getElementById("myForm").style.display = "none";
+    document.getElementById("button").style.display = "flex";
 
     let data = {name:this.tempBoard.name,done:false,ownerId:1  }
       this.httpClient.fetch(`board`, {
@@ -62,6 +63,7 @@ export class Board {
    openForm() {
      console.log("open")
     document.getElementById("myForm").style.display = "flex";
+    document.getElementById("button").style.display = "none";
   }
   
   submit(){
