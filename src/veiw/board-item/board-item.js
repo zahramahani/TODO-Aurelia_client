@@ -12,6 +12,7 @@ import {ValidationControllerFactory,ValidationRules} from 'aurelia-validation';
 import {BootstrapFormRenderer} from './../../bootstrap-form-renderer';
 //http
 import { HttpClient, json } from 'aurelia-fetch-client';
+import { log } from "util";
 
 // @inject(HttpClient)
 // validation_part
@@ -51,18 +52,20 @@ export class BoardItem {
       console.log("helloId")
       console.log(data);
      this.userId = data;
-    });
-    let data = {
+      this.temp = {
       boardId: this.board.boardId,
-      userId: this.userId,
+      userId: this.userId
     }
     this.httpClient.fetch(`addMemberToBoard`, {
       method: 'POST',
-      body: JSON.stringify(data)
+      body: JSON.stringify(this.temp)
     }).then(response => response.json())
     .then(data => {
-     this.fetchMembers();
+     this.fetchMember();
     });
+    });
+    
+    
 
     this.add=false;
     this.userName=null;
@@ -77,8 +80,9 @@ export class BoardItem {
     this.httpClient.fetch('getMember?boardId=' + this.board.boardId)
     .then(response => response.json())
     .then(data => {
+      console.log('here');
       console.log(data);
-     this.userId = data;
+    //  this.userId = data;
      this.board.Members = data.map(element => Object.assign(new user(), element));
     });
   }
