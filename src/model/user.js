@@ -3,7 +3,8 @@ export class User {
     firstName;
     lastName;
     image;
-    userName
+    userName;
+    password;
     
 
     constructor(userName) {
