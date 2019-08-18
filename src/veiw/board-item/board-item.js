@@ -84,8 +84,7 @@ export class BoardItem {
       console.log('here');
       console.log(data);
     //  this.userId = data;
-    debugger
-     this.board.Members = data.map(element => Object.assign(new User(), element));
+     this.board.members = data.map(element => Object.assign(new User(), element));
     
   
     });
