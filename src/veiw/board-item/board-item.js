@@ -36,6 +36,7 @@ export class BoardItem {
   }
   attached(){
     this.getOwnerName(this.board.ownerId)
+    this.fetchMember()
   }
   
   addMember(){
@@ -83,8 +84,12 @@ export class BoardItem {
       console.log('here');
       console.log(data);
     //  this.userId = data;
-     this.board.Members = data.map(element => Object.assign(new user(), element));
+    debugger
+     this.board.Members = data.map(element => Object.assign(new User(), element));
+    
+  
     });
+    
   }
 
   editBoardItem(){
