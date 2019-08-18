@@ -82,10 +82,11 @@ body{
         
         flex-direction: row;
         justify-content:flex-start;
-        max-width: 1600px;
-        @media screen and (max-width: 1270px) {
+        // max-width: 1400px;
+        @media screen and (max-width: 1400px) {
             justify-content: center;
         }
+       
         
         flex-wrap: wrap;
         box-sizing:border-box;
