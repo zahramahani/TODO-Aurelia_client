@@ -9,7 +9,9 @@ export class Task {
   // @bindable img;
  @bindable task;
  @bindable changeColor
-
+attached(){
+  this.changeColor(this.task.todoId);
+}
  updateTask(){
   let data={todoId:this.task.todoId,
     userId:this.task.userId,
@@ -23,6 +25,7 @@ export class Task {
     
   }) .then (response => response.json())
   .then(data => {
+    console.log('changed')
     this.changeColor(this.task.todoId);
     });
 }
