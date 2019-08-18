@@ -42,7 +42,8 @@ export class Todos {
     let data = {
       boardId:board.boardId,
       complete: true,
-      title: this.name
+      title: this.name,
+      // addFlag : false
     }
 
     this.httpClient.fetch(`todo`, {
@@ -74,6 +75,7 @@ export class Todos {
   constructor(controllerFactory, httpClient) {
     this.httpClient = httpClient;
     this.flag = false;
+    // this.addFlag = true;
 
 
     // this.board =new BoardModel('board one','zahraAmirmahani')
