@@ -12,8 +12,8 @@
             </select>
         </div>
         <div class="todo-box">
-            <div repeat.for="todo of board.todos">
-                <todo todo.bind="todo"></todo>
+            <div repeat.for="todo of board.todos"  >
+                <todo todo.bind="todo" delete-todo.call="deleteTodo(todo.todoId)"></todo>
             </div>
 
            
