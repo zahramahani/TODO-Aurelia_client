@@ -1,6 +1,6 @@
 $board:white;
-$info:#178294;
-$addBtn:#BE7841;
+$info:#0097A7;
+$addBtn:#006064;
 $menu-color:#e0e6e9;
 
 // @mixin textOverFlow($width){
@@ -34,6 +34,18 @@ $menu-color:#e0e6e9;
             font-size: 30px;
             border: 1px solid $menu-color;
             cursor: pointer;
+        }
+        .open{
+            
+            height: 40px;
+            border-radius: 8px;
+            background-color: $addBtn;
+            color: white;
+            text-align: center;
+            font-size: 25px;
+            border: 1px solid $menu-color;
+            cursor: pointer;
+
         }
 
         .BoardNumber{

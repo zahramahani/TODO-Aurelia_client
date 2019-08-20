@@ -1,3 +1,3 @@
-import './not-found.scss'
+import './notFound.scss'
 export class NotFound {
 }

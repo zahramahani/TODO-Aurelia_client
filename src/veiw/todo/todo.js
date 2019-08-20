@@ -16,6 +16,7 @@ import { inject } from 'aurelia-framework';
 @inject(ValidationControllerFactory, HttpClient)
 export class Todo {
   @bindable todo
+  @bindable deleteTodo
   isDone
   text = '';
   // validation part
@@ -43,38 +44,18 @@ export class Todo {
         
       });
   };
+  deleteTask(id){
+    
+    this.httpClient.fetch('task/'+id, {
+      method: 'DELETE'
+    }) .then (response => response.json())
+    .then(data => {
+      console.log('changed')
+      this.todo.tasks=null;
+      this.fetchTasks();
 
-  // //update todo as complete
-  // updateTodo() {
-  //   done = true;
-  //   for (task of this.todo.tasks) {
-  //     if (!task.done) {
-  //       done = false;
-  //       break;
-  //     }
-  //   }
-  //   if (done) {
-  //     complete = true;
-  //     changeColor();
-  //     let data = {
-  //       boardId: this.todo.boardId,
-  //       complete: true,
-  //       title: this.todo.title
-  //     }
-
-  //     this.httpClient.fetch(`todo/${this.todo.todoId}`, {
-  //       method: 'POST',
-  //       body: json(data)
-  //     })
-  //     this.name = '';
-  //     this.httpClient.fetch('todo?boardId=' + this.board.boardId)
-  //       .then(response => response.json())
-  //       .then(data => {
-  //         console.log('todos' + data);
-  //         this.board.todos = data.map(element => Object.assign(new Todo(), element));
-  //       });
-  //   }
-  // }
+      });
+  }
   attached() {
     this.fetchTasks();
   }
@@ -109,7 +90,6 @@ export class Todo {
   setDone(done) {
     this.todo.done = done;
   }
-
   //validation_part
   submit() {
     this.controller.validate().then(result => {

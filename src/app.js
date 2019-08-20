@@ -18,10 +18,10 @@ export class App {
       { route: ['', 'dashboard'], name: 'dashboard', moduleId: PLATFORM.moduleName('./veiw/dashboard/dashboard'), nav: true, title: 'Dashboard' },
       { route: ['board'], name: 'board', moduleId: PLATFORM.moduleName('./veiw/board/board'), nav: true, title: 'Boards' },
       { route: ['todos'], name: 'todos', moduleId: PLATFORM.moduleName('./veiw/todos/todos'), nav: true, title: 'Todos' },
-      { route: 'not-found', name: 'not-found', moduleId: PLATFORM.moduleName('./veiw/not-found/not-found'), nav: false }
+      { route: ['notFound'], name: 'notFound', moduleId: PLATFORM.moduleName('./veiw/notFound/notFound'), nav: false }
     ])
     // config.fallbackRoute('not-found')
-    config.mapUnknownRoutes('not-found')
+    config.mapUnknownRoutes('notFound')
     this.router = router
   }
 }
