@@ -1,32 +1,34 @@
 <template>
-        <require from = "./../board-item/board-item"></require> 
-            <div class="content">
-                <div class="div_partitioning">
-                    <div class="main-box">
-                    
-                    <div repeat.for="board of boards">
-                            <board-item board.bind = "board"></board-item>
-                        </div>
-                        
-                        <button class= "button" id="button"click.delegate="openForm()">+</button>
-                        
-                        <div class="form-popup" id="myForm">
-                        <form action="" class="form-content">
-                                
-                            <h1>new Board</h1>
-                            <div>
+    <require from="./../board-item/board-item"></require>
+    <div class="content">
+        <div class="div_partitioning">
+            <div class="main-box">
+                <button class="button" id="button" click.delegate="openForm()">+</button>
+
+                <div class="form-popup" id="myForm">
+                    <form action="" class="form-content">
+
+                        <h1>new Board</h1>
+                        <div>
                             <label for="boardName"><b>board Name</b></label>
-                            </div>
-                            
-                            <div class="form-group">
-                            <input type="txt" class="input"  value.bind="boardName & validate"placeholder="Enter board name" name="boardName" required>
-                            </div>
-                            <button click.delegate="submit()" class= "button">DONE</button>
-                            <!-- <button type="submit" class= "button"  click.delegate="addBoard()">Done</button> -->
-                            </div>
-                        </form>
                         </div>
-                    </div>
+
+                        <div class="form-group">
+                            <input type="txt" class="input" value.bind="boardName & validate"
+                                placeholder="Enter board name" name="boardName" required>
+                        </div>
+                        <button click.delegate="submit()" class="button">DONE</button>
+                        <!-- <button type="submit" class= "button"  click.delegate="addBoard()">Done</button> -->
+
+                    </form>
                 </div>
+                <div repeat.for="board of boards">
+                    <board-item board.bind="board"></board-item>
+                </div>
+
+                
             </div>
+        </div>
+    </div>
+    </div>
 </template>
