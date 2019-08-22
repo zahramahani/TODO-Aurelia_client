@@ -7,6 +7,7 @@ export class Task {
  
   // @bindable done=null;
   // @bindable img;
+ @bindable deleteTask
  @bindable task;
  @bindable changeColor
 attached(){

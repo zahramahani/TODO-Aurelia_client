@@ -1,10 +1,12 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 $menu-color:#e0e6e9;
 $back-color:#94b5bb;
 $back-search-color:white;
-$addBtn:#BE7841;
-$board:#88CDD7;
+$addBtn:#0097A7;
+$board:#B2EBF2;
 $search:#178294;
 $toDoTitle:#178294;
+
 .todo{
     margin: 10px; 
     padding: 10px;
@@ -26,10 +28,17 @@ $toDoTitle:#178294;
         margin: 0px;
         margin-bottom: 15px;
         text-align:center;
+       .trash:before{
+            font-family: FontAwesome;
+            font-size: 24px;
+            content: "\f014";
+            color: white;
+            margin-left: 10px;
+       }
 
     }
     .done{
-        background-color:green;
+        background-color:rgb(22, 139, 37);
     }
     .all-tasks{
         overflow: auto;

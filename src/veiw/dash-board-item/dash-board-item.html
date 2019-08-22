@@ -1,8 +1,7 @@
 <template>
   <div class="Board">
-     
+    <button class="open" click.delegate="directTodos(board.boardId)">open</button>   
     <div class="BoardNumber">${board.name}</div>
-
     <div class="Done"><div if.bind="flag">Done!</div></div>
     <div class="description">
         <ul>
@@ -15,7 +14,7 @@
     <div class='all_image'>
            
             <img  repeat.for="member of board.members"  class='board_image' src="${member.image}" alt="">
-            <button class="delete" if.bind="delete" go.call="deleteBoard(board)">-</button>
+            <button class="delete" if.bind="flag" click.delegate="deleteBoard(board.boardId)">-</button>
             
     </div>
 </div>

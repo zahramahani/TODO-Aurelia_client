@@ -1,7 +1,8 @@
 <template>
   <require from = "./../task/task"></require> 
   <div class="todo">
-    <p class="head  ${isDone ? 'done' : ''}">${todo.name}</p>
+    <p class="head  ${isDone ? 'done' : ''}">${todo.name}
+    <label class="trash" click.delegate='deleteTodo(todo.todoId)'></label></p>
     <div class="form-group">
       <input placeholder=" add new task" class="addDo" value.bind = "text & validate">
       <button click.delegate="submit()" class="btnAdd">+</button>
@@ -9,7 +10,8 @@
     <!-- <hr> -->
     <div class="all-tasks">
       <div repeat.for="task of todo.tasks">
-      <task task.bind="task" change-color.call="changeColor(todo.todoId)"></task>
+      <task task.bind="task" change-color.call="changeColor(todo.todoId)" 
+       delete-task.call="deleteTask(task.taskId)"></task>
     </div>
 </div>
 </div>

@@ -1,10 +1,10 @@
 $menu-color:#e0e6e9;
 $back-color:#94b5bb;
 $back-search-color:white;
-$addBtn:#BE7841;
-$board:#88CDD7;
-$search:#178294;
-$toDoTitle:#178294;
+$addBtn:#006064;
+$board:#B2EBF2;
+$search:#0097A7;
+$toDoTitle:#0097A7;
 @mixin textOverFlow($width){
     width:$width;
     white-space:nowrap;
@@ -31,6 +31,19 @@ $toDoTitle:#178294;
         height:40px;
         width:40px;
         border-radius: 20px;
+
+    }
+    .deleteTask{
+        cursor: pointer;
+        background: $addBtn;
+        border: 1px solid $menu-color;
+        border-radius: 20px;
+        float: right;
+        color:white;
+        box-sizing:border-box;
+        height:40px;
+        width: 40px;
+        
 
     }
     input{

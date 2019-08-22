@@ -1,9 +1,9 @@
 $menu-color:#e0e6e9;
 $back-color:#94b5bb;
-
-$addBtn:#BE7841;
-$board:#88CDD7;
-$info:#178294;
+//#BE7841;#0f535f;
+$addBtn:#006064;
+$board:#B2EBF2;
+$info:#0097A7;
 
 @mixin textOverFlow($width){
     width:$width;
@@ -86,8 +86,6 @@ body{
         @media screen and (max-width: 1400px) {
             justify-content: center;
         }
-       
-        
         flex-wrap: wrap;
         box-sizing:border-box;
         width:100%;
@@ -98,17 +96,18 @@ body{
         display: flex;
         .form-popup{
             display :none;
-            width:100%;
+            width:700px;
+            height: 400px;
             background-color:white ;
             flex-direction: column;
             border: 1px solid $menu-color;
             border-radius: 5px;
-            padding-left:10px;
-            margin:10px;
-
+            margin: 15px;
+           
             .form-content{
-            padding:10px 10px 10px 10px;
             
+            padding:10px 10px 10px 10px;
+            margin: auto;
             .input{
 
                 // border:none;
@@ -140,7 +139,7 @@ body{
                 font-size: 30px;
                 width: 100%;
                 height: 40px;
-                border-radius: 12px;
+                border-radius: 5px;
                 display: flex;
                 flex-direction: row;
                 justify-content: center; 

@@ -3,7 +3,8 @@ import { bindable } from "aurelia-framework"
 import { Todo } from '../../model/todo'
 import { HttpClient, json } from 'aurelia-fetch-client';
 import { inject } from 'aurelia-framework';
-@inject(HttpClient)
+import {Router} from 'aurelia-router';
+@inject(HttpClient, Router)
 export class DashBoardItem {
   NumberOfTodos;
   flag=false;
@@ -11,8 +12,9 @@ export class DashBoardItem {
   @bindable deleteBoard;
   @bindable board;
   todos = []
-  constructor(httpClient) {
+  constructor(httpClient,router) {
     this.httpClient = httpClient;
+    this.router = router;
   }
   attached() {
     this.getNumberOfTodos(this.board.boardId)
@@ -32,28 +34,21 @@ export class DashBoardItem {
     this.httpClient.fetch('taskNumber?boardId='+id)
       .then(response => response.json())
       .then(data => {
-              if (Number(data) === 0) {
-                this.board.done = true;
-                this.flag=true;
-              }
+             
         });
-
   }
   getAllNumberOfTasks(id) {
     this.httpClient.fetch('allTaskNumber?boardId='+id)
       .then(response => response.json())
       .then(data => {
+        if (Number(data) === 0) {
+          this.board.done = true;
+          this.flag=true;
+        }
               console.log(data + "d");
               this.board.taskCount= Number(data)
         });
   }
-  //   // if(this.delete){
-  //   //   this.board.delete=true;
-  //   //   //delete this board :)
-  //   return this.board;
-  //   // }
-  // }
-
   getOwnerName(id){
 
     console.log(" in get owner name")
@@ -65,4 +60,7 @@ export class DashBoardItem {
 
           });
     }
+    directTodos(boardId){
+      this.router.navigateToRoute('todos', {boardId: boardId});
+      }
   }
