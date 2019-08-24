@@ -39,13 +39,13 @@
                         <h2>LOG IN</h2>
                         <div class="input-container">
                             <img class="icon" src="./member.png"></i>
-                            <input class="input-field" type="text" placeholder="Username" name="Username">
+                            <input value.bind = "loginUserName" class="input-field" type="text" placeholder="Username" name="Username">
                         </div>
                         <div class="input-container">
                             <img class="icon" src="./password.png">
-                            <input class="input-field" type="password" placeholder="Password" name="email">
+                            <input value.bind= "loginPassword" class="input-field" type="password" placeholder="Password" name="email">
                         </div>
-                        <button type="submit" class="loginBtn" >Login</button>
+                        <button click.delegate = "loginUser()" type="submit" class="loginBtn" >Login</button>
                     </div>
                     </form>
        
@@ -56,25 +56,25 @@
                         <h2>SIGN UP</h2>
                         <div class="input-container">
                             <img class="icon" src="./member.png">
-                            <input class="input-field" type="text" placeholder="First Name" name="usrnm">
+                            <input  value.bind = "firstName" class="input-field" type="text" placeholder="First Name" name="usrnm">
                         </div>
 
                         <div class="input-container">
                             <img class="icon" src="./member.png">
-                            <input class="input-field" type="text" placeholder="Last name" name="email">
+                            <input value.bind = "lastName" class="input-field" type="text" placeholder="Last name" name="email">
                         </div>
 
                         <div class="input-container">
                             <img class="icon" src="./member.png"></i>
-                            <input class="input-field" type="text" placeholder="Username" name="username">
+                            <input value.bind = "userName" class="input-field" type="text" placeholder="Username" name="username">
                         </div>
 
                         <div class="input-container">
                             <img class="icon" src="./password.png">
-                            <input class="input-field" type="password" placeholder="Password" name="password">
+                            <input value.bind = "password" class="input-field" type="password" placeholder="Password" name="password">
                         </div>
 
-                        <button type="submit" class="signUpBtn">Register</button>
+                        <button click.delegate = "registerUser()" type="submit" class="signUpBtn">Register</button>
                     </form>
                 </div> 
                 </div>

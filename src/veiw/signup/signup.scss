@@ -136,6 +136,8 @@ body {
                 background-color: white;
                 box-sizing: border-box;
                 padding: 2%;
+                // animation: mymove 1s;
+                // animation-fill-mode: forwards;
                 // padding: 10px;
                 .loginForm{
                     height: 100%;
@@ -190,6 +192,10 @@ body {
 
                   // }
                 }
+                @keyframes mymove {
+                  from {left: 0%;}
+                  to {left: 49%;}
+                  }
               }
               .signUpPage{
                 width:45%;
@@ -203,8 +209,9 @@ body {
                 background: white; 
                 box-sizing: border-box;
                 padding: 2%;
-                animation: mymove 1s;
-                animation-fill-mode: forwards;
+                // animation: mymove 1s;
+                // animation-fill-mode: forwards;
+                // animation: mymove 1s;
                 .signupForm{
                     height: 100%;
                     widows: 100%;
@@ -244,6 +251,10 @@ body {
                         opacity: 0.9;
                       }
                   }
+                  @keyframes mymove {
+                    from {left: 0%;}
+                    to {left: 49%;}
+                    }
               }     
 
             }
