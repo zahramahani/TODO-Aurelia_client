@@ -1,0 +1,84 @@
+<template>
+    <!-- <require from="./signup"></require> -->
+    <div class="mainContainer">
+        <div class="container">
+            <div class="signUp-loginPart">
+                <div class="signUp-loginPartioning">
+                    <div class=signUpContent>
+                        <span>
+                            <h1 id="firstPartFont">Dont have an account?</h1>
+                            <br>
+                            <h2 id="secondPartFont">Evreything you need to manage your works!</h2>
+                        </span>
+                        <button  click.delegate = "signup()" class="signUpButton">
+                            <span id="thirdPartFont">
+                                SING UP
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="signUp-loginPartioning">
+                    <div class=loginContent>
+                        <span>
+                            <h1 id="firstPartFont">Have an account?</h1>
+                            <br>
+                            <h2 id="secondPartFont">Evreything you need to manage your works!</h2>
+                        </span>
+                        <button   click.delegate = "login()" class="loginButton">
+                            <span id="thirdPartFont">
+                                LOG IN
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+                <div if.bind = "loginFlag" class="LogInPage">
+   
+                    <form action="" class="loginForm">
+                        <div class="loginPageContent">
+                        <h2>LOG IN</h2>
+                        <div class="input-container">
+                            <img class="icon" src="./member.png"></i>
+                            <input class="input-field" type="text" placeholder="Username" name="Username">
+                        </div>
+                        <div class="input-container">
+                            <img class="icon" src="./password.png">
+                            <input class="input-field" type="password" placeholder="Password" name="email">
+                        </div>
+                        <button type="submit" class="loginBtn" >Login</button>
+                    </div>
+                    </form>
+       
+                </div>
+                <div  if.bind = "signupFlag" class="signUpPage">
+                    <div class="signupForm">
+                    <form action="" >
+                        <h2>SIGN UP</h2>
+                        <div class="input-container">
+                            <img class="icon" src="./member.png">
+                            <input class="input-field" type="text" placeholder="First Name" name="usrnm">
+                        </div>
+
+                        <div class="input-container">
+                            <img class="icon" src="./member.png">
+                            <input class="input-field" type="text" placeholder="Last name" name="email">
+                        </div>
+
+                        <div class="input-container">
+                            <img class="icon" src="./member.png"></i>
+                            <input class="input-field" type="text" placeholder="Username" name="username">
+                        </div>
+
+                        <div class="input-container">
+                            <img class="icon" src="./password.png">
+                            <input class="input-field" type="password" placeholder="Password" name="password">
+                        </div>
+
+                        <button type="submit" class="signUpBtn">Register</button>
+                    </form>
+                </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
