@@ -1,22 +1,33 @@
 <template>
-  <div class="Board">
-    <button class="open" click.delegate="directTodos(board.boardId)">open</button>   
-    <div class="BoardNumber">${board.name}</div>
-    <div class="Done"><div if.bind="flag">Done!</div></div>
-    <div class="description">
-        <ul>
-            <li>${NumberOfTodos}  todos (${board.taskCount} tasks) </li>
-            <li if.bind="noTask">No remaining tasks</li>
-            <li>${board.owner}(Owner)</li>
-        </ul>
+    <div class="Board">
+        <button class="open" click.delegate="directTodos(board.boardId)">open</button>
+        <div class="BoardNumber">${board.name}</div>
+        <div class="Done">
+            <div if.bind="flag">Done!</div>
+        </div>
+        <div class="description">
+            <ul>
+                <li>${NumberOfTodos} todos (${board.taskCount} tasks) </li>
+                <li if.bind="noTask">No remaining tasks</li>
+                <li>${board.owner}(Owner)</li>
+            </ul>
+        </div>
+
+        <div class='all_image'>
+
+            <img repeat.for="member of board.members" class='board_image' src="${member.image}" alt="">
+            <button class="delete" if.bind="flag" click.delegate="selectRemove()">-</button>
+
+        </div>
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <p>are you sure to delete this board?</p>
+                <button class="close" click.delegate="dontRemove()">not now</button>
+                <button class="close" click.delegate="remove()">yes.I'm sure.</button>
+            </div>
+
+        </div>
     </div>
-    
-    <div class='all_image'>
-           
-            <img  repeat.for="member of board.members"  class='board_image' src="${member.image}" alt="">
-            <button class="delete" if.bind="flag" click.delegate="deleteBoard(board.boardId)">-</button>
-            
-    </div>
-</div>
 
 </template>
