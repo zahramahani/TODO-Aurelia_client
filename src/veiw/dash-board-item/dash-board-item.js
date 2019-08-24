@@ -63,4 +63,18 @@ export class DashBoardItem {
     directTodos(boardId){
       this.router.navigateToRoute('todos', {boardId: boardId});
       }
+      dontRemove(){
+        document.getElementById("myModal").style.display = "none";
+      }
+      remove() {
+        // console.log("remove id");
+        //   console.log(romoveid);
+          
+          document.getElementById("myModal").style.display = "none";
+          this.deleteBoard(this.board.boardId);
+          
+      }
+      selectRemove(){
+        document.getElementById("myModal").style.display = "block";
+      }
   }

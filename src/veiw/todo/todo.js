@@ -17,11 +17,12 @@ import { inject } from 'aurelia-framework';
 export class Todo {
   @bindable todo
   @bindable deleteTodo
+
   isDone
   text = '';
   // validation part
   controller = null;
-
+  delete;
   //http_part
   //we use fetchTask() twice so we put it in function
   fetchTasks() {
@@ -45,23 +46,24 @@ export class Todo {
 
       });
   };
-  deleteTask(id) {
-
-    this.httpClient.fetch('task/' + id, {
-      method: 'DELETE'
-    }).then(response => response.json())
-      .then(data => {
-        console.log('changed')
-        this.todo.tasks = null;
-        this.fetchTasks();
-
-      });
-  }
+  
   attached() {
     this.fetchTasks();
   }
-
-
+  dontRemove(){
+    document.getElementById("mytodoModal").style.display = "none";
+  }
+  remove(removeTodoid) {
+      document.getElementById("mytodoModal").style.display = "none";
+      this.deleteTodo(removeTodoid);
+      
+  }
+  selectRemove(id){
+    if (confirm('Are you sure you want to delete this todo?')){
+      this.deleteTodo(id);
+    }
+    // document.getElementById("mytodoModal").style.display = "block";
+  }
   constructor(controllerFactory, httpClient) {
     // http_part
     this.httpClient = httpClient;
@@ -84,9 +86,10 @@ export class Todo {
       method: 'POST',
       body: JSON.stringify(data)
     }).then(response => response.json())
-      .then(data => {
-        this.fetchTasks();
-      });
+    .then(data => {
+     this.fetchTasks();
+    });
+    this.text=null;
   }
   setDone(done) {
     this.todo.done = done;
