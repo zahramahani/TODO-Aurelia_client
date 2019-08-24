@@ -12,7 +12,6 @@ import {ValidationControllerFactory,ValidationRules} from 'aurelia-validation';
 import {BootstrapFormRenderer} from './../../bootstrap-form-renderer';
 //http
 import { HttpClient, json } from 'aurelia-fetch-client';
-import { log } from "util";
 
 // @inject(HttpClient)
 // validation_part
