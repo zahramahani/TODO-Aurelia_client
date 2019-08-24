@@ -9,7 +9,7 @@ import { ValidationControllerFactory, ValidationRules } from 'aurelia-validation
 import { BootstrapFormRenderer } from './../../bootstrap-form-renderer';
 // validation_part
 //http_part
-import { HttpClient,json } from 'aurelia-fetch-client';
+import { HttpClient, json } from 'aurelia-fetch-client';
 import { inject } from 'aurelia-framework';
 //http_part
 
@@ -33,16 +33,17 @@ export class Todo {
         this.todo.tasks = data.map(element => Object.assign(new Task(), element));
       });
   }
- 
+
   //change color of todo when all taska mark as done
-  changeColor(id) { 
-    this.httpClient.fetch('doneTasks?todoId=' +id)
+  changeColor(id) {
+    this.httpClient.fetch('doneTasks?todoId=' + id)
       .then(response => response.json())
       .then(data => {
         console.log('tasks' + data);
-        if(Number(data)===0){
-        this.isDone=true;}else{this.isDone=false;}
-        
+        if (Number(data) === 0) {
+          this.isDone = true;
+        } else { this.isDone = false; }
+
       });
   };
   
