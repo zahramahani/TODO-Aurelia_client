@@ -9,7 +9,7 @@ import { ValidationControllerFactory, ValidationRules } from 'aurelia-validation
 import { BootstrapFormRenderer } from './../../bootstrap-form-renderer';
 // validation_part
 //http_part
-import { HttpClient,json } from 'aurelia-fetch-client';
+import { HttpClient, json } from 'aurelia-fetch-client';
 import { inject } from 'aurelia-framework';
 //http_part
 
@@ -21,7 +21,7 @@ export class Todo {
   text = '';
   // validation part
   controller = null;
-  
+
   //http_part
   //we use fetchTask() twice so we put it in function
   fetchTasks() {
@@ -32,27 +32,28 @@ export class Todo {
         this.todo.tasks = data.map(element => Object.assign(new Task(), element));
       });
   }
- 
+
   //change color of todo when all taska mark as done
-  changeColor(id) { 
-    this.httpClient.fetch('doneTasks?todoId=' +id)
+  changeColor(id) {
+    this.httpClient.fetch('doneTasks?todoId=' + id)
       .then(response => response.json())
       .then(data => {
         console.log('tasks' + data);
-        if(Number(data)===0){
-        this.isDone=true;}else{this.isDone=false;}
-        
+        if (Number(data) === 0) {
+          this.isDone = true;
+        } else { this.isDone = false; }
+
       });
   };
-  deleteTask(id){
-    
-    this.httpClient.fetch('task/'+id, {
+  deleteTask(id) {
+
+    this.httpClient.fetch('task/' + id, {
       method: 'DELETE'
-    }) .then (response => response.json())
-    .then(data => {
-      console.log('changed')
-      this.todo.tasks=null;
-      this.fetchTasks();
+    }).then(response => response.json())
+      .then(data => {
+        console.log('changed')
+        this.todo.tasks = null;
+        this.fetchTasks();
 
       });
   }
@@ -83,9 +84,9 @@ export class Todo {
       method: 'POST',
       body: JSON.stringify(data)
     }).then(response => response.json())
-    .then(data => {
-     this.fetchTasks();
-    });
+      .then(data => {
+        this.fetchTasks();
+      });
   }
   setDone(done) {
     this.todo.done = done;
