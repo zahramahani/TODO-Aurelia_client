@@ -4,7 +4,8 @@ import { HttpClient, json } from 'aurelia-fetch-client';
 import {validationMessages} from 'aurelia-validation';
 import {ValidationControllerFactory,ValidationRules} from 'aurelia-validation';
 import {BootstrapFormRenderer} from './../../bootstrap-form-renderer';
-@inject(ValidationControllerFactory,HttpClient)
+import {Router} from 'aurelia-router';
+@inject(ValidationControllerFactory,HttpClient,Router)
 export class Signup {
     firstName
     lastName
@@ -12,13 +13,15 @@ export class Signup {
     password
     loginPassword
     loginUserName
+    repeated=false;
     loginFlag = true;
     signupFlag = false;
 
-    constructor (controllerFactory,httpClient) {
+    constructor (controllerFactory,httpClient,router) {
         this.httpClient=httpClient;
         this.controller = controllerFactory.createForCurrentScope();
         this.controller.addRenderer(new BootstrapFormRenderer());
+        this.router=router
       }
 
     login(){
@@ -33,7 +36,11 @@ export class Signup {
     }
 
     registerUser(){
-        let data = {
+      this.httpClient.fetch('getUserRepeated?userName=' +this.userName)
+      .then(response => response.json())
+      .then(data => {
+        if (Number(data) === 0) {
+          let signupData = {
             firstName:this.firstName,
             lastName:this.lastName,
             userName:this.userName,
@@ -42,11 +49,19 @@ export class Signup {
           
           this.httpClient.fetch(`signup`, {
             method: 'POST',
-            body: JSON.stringify(data)
+            body: JSON.stringify(signupData)
           }).then(response => response.json())
             .then(data => {
             console.log("regdone");
+            this.router.navigateToRoute('dashboard');
             });
+        }else{
+          this.repeated=true;
+        }
+
+      });
+      
+       
         }
         loginUser(){
             let data = {
@@ -58,6 +73,7 @@ export class Signup {
                 body: JSON.stringify(data)
               }).then(response => response.json())
                 .then(data => {
+                  this.router.navigateToRoute('dashboard');
                   console.log(data);
                 });
         }
