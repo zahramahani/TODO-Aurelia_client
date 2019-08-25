@@ -73,7 +73,7 @@
                             <img class="icon" src="./password.png">
                             <input value.bind = "password" class="input-field" type="password" placeholder="Password" name="password">
                         </div>
-
+                        <p if.bind="repeated">this username is token please try other</p>
                         <button click.delegate = "registerUser()" type="submit" class="signUpBtn">Register</button>
                     </form>
                 </div> 
