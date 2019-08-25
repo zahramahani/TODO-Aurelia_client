@@ -137,8 +137,10 @@ $info:#0097A7;
                     box-sizing: border-box;
                 }
                 .internal-form-popup{
-                   
+                    display: flex;
+                    flex-direction: column;
                 .div_MemberButton{
+
                     // background-color: black;
                     width: 100%;
                     height:20%;
@@ -146,6 +148,8 @@ $info:#0097A7;
                     flex-direction: row-reverse;
                     font-size: 20px;
                     box-sizing: border-box;
+                    margin-left:10px;
+                    margin-bottom:20px;
                     .MemberButton {
                         background-color: $addBtn;
                         color: white;
@@ -163,14 +167,15 @@ $info:#0097A7;
                     }
                 }
                 .internal-form-content{
+                    width:20%;
                     .internal-input{
                         border: 1px solid $back-color;
                         border-radius:5px;
                         background-color: $back-color;
                         // margin-left:10px;
                         // padding-left:5px;
-                        width:100px;
-                        @include textOverFlow(100px);
+                        width:200px;
+                        @include textOverFlow(200px);
                         // min-width: 200px;
                     }
             }

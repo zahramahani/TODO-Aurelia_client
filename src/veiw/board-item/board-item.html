@@ -24,6 +24,8 @@
                     </div>
                     <!-- <div class="div_MemberButton"><button class="MemberButton" type="submit"click.delegate="submit()">+</button></div> -->
                 </form>
+                <p if.bind="enterUsername">enter an exist username please!</p>
+                <p if.bind="repeated">this username was added before</p>
                 <div class="div_MemberButton"><button class="MemberButton" type="submit"click.delegate="submit()">+</button></div>            
             </div>
           
