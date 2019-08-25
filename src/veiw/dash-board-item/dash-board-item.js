@@ -66,12 +66,13 @@ export class DashBoardItem {
       dontRemove(){
         document.getElementById("myModal").style.display = "none";
       }
-      remove() {
+      remove(id) {
         // console.log("remove id");
         //   console.log(romoveid);
-          
+          if(confirm('Are you sure you want to delete this board?')){
           document.getElementById("myModal").style.display = "none";
-          this.deleteBoard(this.board.boardId);
+          this.deleteBoard(id);
+          }
           
       }
       selectRemove(){

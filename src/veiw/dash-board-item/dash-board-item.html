@@ -16,7 +16,7 @@
         <div class='all_image'>
 
             <img repeat.for="member of board.members" class='board_image' src="${member.image}" alt="">
-            <button class="delete" if.bind="flag" click.delegate="selectRemove()">-</button>
+            <button class="delete" if.bind="flag" click.delegate="remove(board.boardId)">-</button>
 
         </div>
         <div id="myModal" class="modal">
