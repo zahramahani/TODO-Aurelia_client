@@ -36,24 +36,20 @@ export class Dashboard {
 
     this.selected_board = this.boards.find((item) => item.boardId === id);
     console.log(this.selected_board);
-    let mydata = {
-      "ownerId": 0,
-      "done": this.selected_board.done,
-      "name": this.selected_board.name
-    }
-    this.httpClient.fetch('board/' + id, {
-      method: 'PUT',
-      body: json(mydata)
 
-    });
-    // delete from middle table
-    this.httpClient.fetch('board/' + id, {
+    this.httpClient.fetch('owner/' + id, {
       method: 'DELETE'
     }).then(response => response.json())
       .then(data => {
-        console.log('changed')
-        // this.boards=null;
-        this.getBoards();
+        this.httpClient.fetch('board/' + id, {
+          method: 'DELETE'
+        }).then(response => response.json())
+          .then(data => {
+            console.log('changed')
+            // this.boards=null;
+            this.getBoards();
+    
+          });
 
       });
   }
