@@ -66,6 +66,26 @@ export class Signup {
       
        
         }
+        signUpSubmit() {
+          this.controller.validate().then(result => {
+            if (result.valid) {
+              console.log('valid');
+              this.registerUser();
+              console.log(result);
+              this.firstName = "";
+              this.lastName = "";
+              this.userName = "";
+              this.password = "";
+
+            } else {
+              console.log(result);
+              this.firstName = "";
+              this.lastName = "";
+              this.userName = "";
+              this.password = "";
+            }
+          })
+        }
         loginUser(){
             let data = {
                 userName:this.loginUserName,
@@ -80,7 +100,28 @@ export class Signup {
                   console.log(data);
                 });
         }
-    
+
+        loginSubmit() {
+          this.controller.validate().then(result => {
+            if (result.valid) {
+              console.log('valid');
+              this.loginUser();
+              console.log(result);
+            } else {
+              console.log('invalid');
+              console.log(result);
+            }
+          })
+        }
     }
+  ValidationRules
+  .ensure(a => a.loginUserName).required()
+  .ensure(a => a.loginPassword).required()
+  .ensure(a => a.firstName).required()
+  .ensure(a => a.lastName).required()
+  .ensure(a => a.userName).required()
+  .ensure(a => a.password).minLength(8).required().matches('/^[\].*/');
+  // .matches((?=^.{6,255}$)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*)
+  .on(Signup);
 
   

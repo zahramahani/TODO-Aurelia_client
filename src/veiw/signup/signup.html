@@ -10,7 +10,7 @@
                             <br>
                             <h2 id="secondPartFont">Evreything you need to manage your works!</h2>
                         </span>
-                        <button  click.delegate = "signup()" class="signUpButton">
+                        <button click.delegate="signup()" class="signUpButton">
                             <span id="thirdPartFont">
                                 SING UP
                             </span>
@@ -24,7 +24,7 @@
                             <br>
                             <h2 id="secondPartFont">Evreything you need to manage your works!</h2>
                         </span>
-                        <button   click.delegate = "login()" class="loginButton">
+                        <button click.delegate="login()" class="loginButton">
                             <span id="thirdPartFont">
                                 LOG IN
                             </span>
@@ -32,51 +32,69 @@
                     </div>
                 </div>
 
-                <div if.bind = "loginFlag" class="LogInPage">
-   
+                <div if.bind="loginFlag" class="LogInPage">
+
                     <form action="" class="loginForm">
                         <div class="loginPageContent">
-                        <h2>LOG IN</h2>
-                        <div class="input-container">
-                            <img class="icon" src="./member.png"></i>
-                            <input value.bind = "loginUserName" class="input-field" type="text" placeholder="Username" name="Username">
+                            <h2>LOG IN</h2>
+                            <div class="form-group">
+                            <div class="input-container">
+                                <img class="icon" src="./member.png"></i>
+                                    <input value.bind="loginUserName & validateOnChange" class="input-field" type="text"
+                                        placeholder="Username" name="Username">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                            <div class="input-container">
+                                <img class="icon" src="./password.png">
+                                <input value.bind="loginPassword & validateOnChange" class="input-field" type="password"
+                                    placeholder="Password" name="email">
+                            </div>
+                            </div>
+                            <button click.delegate="loginSubmit()" type="submit" class="loginBtn">Login</button>
                         </div>
-                        <div class="input-container">
-                            <img class="icon" src="./password.png">
-                            <input value.bind= "loginPassword" class="input-field" type="password" placeholder="Password" name="email">
-                        </div>
-                        <button click.delegate = "loginUser()" type="submit" class="loginBtn" >Login</button>
-                    </div>
                     </form>
-       
+
                 </div>
-                <div  if.bind = "signupFlag" class="signUpPage">
+                <div if.bind="signupFlag" class="signUpPage">
                     <div class="signupForm">
-                    <form action="" >
-                        <h2>SIGN UP</h2>
-                        <div class="input-container">
-                            <img class="icon" src="./member.png">
-                            <input  value.bind = "firstName" class="input-field" type="text" placeholder="First Name" name="usrnm">
-                        </div>
+                        <form action="">
+                            <h2>SIGN UP</h2>
+                            <div class="form-group">
+                            <div class="input-container">
+                                <img class="icon" src="./member.png">
+                                    <input value.bind="firstName & validateOnChange" class="input-field" type="text"
+                                        placeholder="First Name" name="usrnm">
+                                </div>
+                            </div>
 
-                        <div class="input-container">
-                            <img class="icon" src="./member.png">
-                            <input value.bind = "lastName" class="input-field" type="text" placeholder="Last name" name="email">
-                        </div>
+                            <div class="form-group">
+                            <div class="input-container">
+                                <img class="icon" src="./member.png">
+                                    <input value.bind="lastName & validateOnChange" class="input-field" type="text"
+                                        placeholder="Last name" name="email">
+                                </div>
+                            </div>
 
-                        <div class="input-container">
-                            <img class="icon" src="./member.png"></i>
-                            <input value.bind = "userName" class="input-field" type="text" placeholder="Username" name="username">
-                        </div>
+                            <div class="form-group">
+                            <div class="input-container">
+                                <img class="icon" src="./member.png"></i>
+                                    <input value.bind="userName & validateOnChange" class="input-field" type="text"
+                                        placeholder="Username" name="username">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                            <div class="input-container">
+                                <img class="icon" src="./password.png">
+                                    <input value.bind="password & validateOnChange" class="input-field" type="password"
+                                        placeholder="Password" name="password">
+                                </div>
+                            </div>
 
-                        <div class="input-container">
-                            <img class="icon" src="./password.png">
-                            <input value.bind = "password" class="input-field" type="password" placeholder="Password" name="password">
-                        </div>
-                        <p if.bind="repeated">this username is token please try other</p>
-                        <button click.delegate = "registerUser()" type="submit" class="signUpBtn">Register</button>
-                    </form>
-                </div> 
+                            <button click.delegate="signUpSubmit()" type="submit" class="signUpBtn">Register</button>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </div>
