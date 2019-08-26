@@ -53,7 +53,10 @@ export class Signup {
           }).then(response => response.json())
             .then(data => {
             console.log("regdone");
-            this.router.navigateToRoute('dashboard');
+            // this.router.navigateToRoute('dashboard'); 
+            this.loginFlag = true;
+            this.signupFlag = false;
+
             });
         }else{
           this.repeated=true;
