@@ -23,29 +23,30 @@ export class Todos {
   todos = [];
   name = '';
   currentBoardId;
-  activate(a,b,c){
+ 
+  activate(a, b, c) {
     console.log("board id passed");
-    
+
     console.log(a.boardId);
-    this.currentBoardId=+a.boardId;
+    this.currentBoardId = +a.boardId;
   }
   attached() {
     this.httpClient.fetch('board')
       .then(response => response.json())
       .then(data => {
         this.boards = data.map(element => Object.assign(new BoardModel(), element));
-        if (this.currentBoardId){
-       
+        if (this.currentBoardId) {
+
           this.selectedBoard = this.boards.find((item) => item.boardId === this.currentBoardId);
           console.log(this.selectedBoard)
           this.selectBoard(this.selectedBoard);
-          
-        }else{
+
+        } else {
           this.board = this.boards[0];
           this.getBoardsTodos(this.board.boardId);
 
         }
-        
+
       });
 
   }
@@ -53,7 +54,7 @@ export class Todos {
   addTodo(board) {
     console.log('hal yaram bia' + board.boardId)
     let data = {
-      boardId:board.boardId,
+      boardId: board.boardId,
       complete: true,
       title: this.name,
       // addFlag : false
@@ -96,19 +97,18 @@ export class Todos {
     this.controller.addRenderer(new BootstrapFormRenderer());
   }
 
-  deleteTodo(id){
-    
-    this.httpClient.fetch('todo/'+id, {
+  deleteTodo(id) { 
+    this.httpClient.fetch('todo/' + id, {
       method: 'DELETE'
-    }) .then (response => response.json())
-    .then(data => {
-      console.log('changed')
-      this.board.todos=null;
-      this.getBoardsTodos(this.board.boardId)
+    }).then(response => response.json())
+      .then(data => {
+        console.log('changed')
+        this.board.todos = null;
+        this.getBoardsTodos(this.board.boardId)
 
       });
   }
- 
+
   addBoard() {
     this.tempBoard = new BoardModel(this.boardName, this.firstName + " " + this.lastName)
     this.boards.push(this.tempBoard);
@@ -124,7 +124,7 @@ export class Todos {
   submit() {
     this.controller.validate().then(result => {
       if (result.valid) {
-        this.flag=false;
+        this.flag = false;
         console.log(this.board)
         console.log('lksn' + this.board.boardId);
         this.addTodo(this.board);

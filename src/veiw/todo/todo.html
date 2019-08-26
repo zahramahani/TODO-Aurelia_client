@@ -2,7 +2,7 @@
   <require from = "./../task/task"></require> 
   <div class="todo">
     <p class="head  ${isDone ? 'done' : ''}">${todo.name}
-    <label class="trash" click.delegate='deleteTodo(todo.todoId)'></label></p>
+    <label class="trash" click.delegate="selectRemove(todo.todoId)"></label></p>
     <div class="form-group">
       <input placeholder=" add new task" class="addDo" value.bind = "text & validate">
       <button click.delegate="submit()" class="btnAdd">+</button>
@@ -11,8 +11,18 @@
     <div class="all-tasks">
       <div repeat.for="task of todo.tasks">
       <task task.bind="task" change-color.call="changeColor(todo.todoId)" 
-       delete-task.call="deleteTask(task.taskId)"></task>
+       fetch-tasks.call="fetchTasks()"></task>
     </div>
+</div>
+<!-- The Modal -->
+<div id="mytodoModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <p>are you sure to delete item?</p>
+        <button class="close"click.delegate="dontRemove()" >not now</button>
+        <button class="close" click.delegate="remove(todo.todoId)">yes.I'm sure.</button>
+    </div>
+
 </div>
 </div>
 </template>

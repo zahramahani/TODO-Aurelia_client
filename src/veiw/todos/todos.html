@@ -12,11 +12,11 @@
             </select>
         </div>
         <div class="todo-box">
-            <div repeat.for="todo of board.todos"  >
+            <div repeat.for="todo of board.todos">
                 <todo todo.bind="todo" delete-todo.call="deleteTodo(todo.todoId)"></todo>
             </div>
 
-           
+
 
             <!-- changed -->
             <!-- <button class= "button" click.delegate="openForm()">+</button>
@@ -30,9 +30,10 @@
                 <form action="" class="form-content-Todo">
                     <h1>New Todo</h1>
                     <div>
-                            <div class="form-group">
-                        <input type="text" style = "" class="input-Todo" value.bind="name & validate" placeholder="Enter title" name="name">
-                        <button click.delegate="submit()" class= "button">+</button>
+                        <div class="form-group">
+                            <input type="text" style="" class="input-Todo" value.bind="name & validate"
+                                placeholder="Enter title" name="name">
+                            <button click.delegate="submit()" class="button">+</button>
                         </div>
                     </div>
                     <!-- <button type="submit" class= "add"  click.delegate="addTodo()">+</button> -->
@@ -43,6 +44,6 @@
 
             <button class="add" click.delegate="openForm()">+</button>
         </div>
-
+        
     </div>
 </template>

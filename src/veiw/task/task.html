@@ -1,13 +1,23 @@
 <template>
-    <hr>
-  <div class="task" > 
-    <input type="checkbox" checked.bind="task.done"  change.delegate='updateTask()'/>
+  <hr>
+  <div class="task">
+    <input type="checkbox" checked.bind="task.done" change.delegate='updateTask()' />
     <span>
       ${task.text}
     </span>
-  
+
     <!-- <img src="${task.image}"/> -->
-    <img src="pic.png"/>
-    <button class="deleteTask" click.delegate="deleteTask(task.taskId)">-</button>
-</div>
+    <img src="pic.png" />
+    <button class="deleteTask"  click.delegate="remove(task.taskId)">-</button>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <p>are you sure to delete this task?</p>
+        <button class="close" click.delegate="dontRemove()">not now</button>
+        <button class="close" click.delegate="remove(task.taskId)">yes.I'm sure.</button>
+      </div>
+
+    </div>
+  </div>
 </template>
