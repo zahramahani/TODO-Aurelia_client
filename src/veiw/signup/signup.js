@@ -1,11 +1,13 @@
 import './signup.scss'
 import { inject } from 'aurelia-framework';
+import{ Aurelia } from 'aurelia-framework';
 import { HttpClient, json } from 'aurelia-fetch-client';
 import {validationMessages} from 'aurelia-validation';
 import {ValidationControllerFactory,ValidationRules} from 'aurelia-validation';
 import {BootstrapFormRenderer} from './../../bootstrap-form-renderer';
 import {Router} from 'aurelia-router';
-@inject(ValidationControllerFactory,HttpClient,Router)
+import AuthService from './../../auth-service'
+@inject(ValidationControllerFactory,HttpClient,Router,AuthService,Aurelia)
 export class Signup {
     firstName
     lastName
@@ -17,11 +19,34 @@ export class Signup {
     loginFlag = true;
     signupFlag = false;
 
-    constructor (controllerFactory,httpClient,router) {
-        this.httpClient=httpClient;
-        this.controller = controllerFactory.createForCurrentScope();
+    constructor (controllerFactory,httpClient,router,AuthService,Aurelia) {
+      this.controller = controllerFactory.createForCurrentScope();
+      this.httpClient=httpClient;
         this.controller.addRenderer(new BootstrapFormRenderer());
         this.router=router
+        this.AuthService = AuthService
+        this.aurelia =  Aurelia
+      }
+
+      attached(){
+        this.httpClient.configure(x =>{
+          x
+          .withBaseUrl('http://localhost:3001/api/')
+          .withDefaults(
+            {
+              headers: {
+                'Authorization': `Bearer ${localStorage.getItem('userToken')}`
+              }
+            });
+          // x.withInterceptor({
+          //   request(message) {
+          //     return message;
+          //   },
+          //   responseError(error) {
+          //   throw error;
+          //   }
+          //   }); 
+        })
       }
 
     login(){
@@ -46,11 +71,11 @@ export class Signup {
             userName:this.userName,
             password:this.password
           }
-          
-          this.httpClient.fetch(`signup`, {
-            method: 'POST',
-            body: JSON.stringify(signupData)
-          }).then(response => response.json())
+          this.AuthService.signup(this.firstName ,this.lastName ,this.userName ,this.password)
+          // this.httpClient.fetch(`signup`, {
+          //   method: 'POST',
+          //   body: JSON.stringify(signupData)
+          // }).then(response => response.json())
             .then(data => {
             console.log("regdone");
             // this.router.navigateToRoute('dashboard'); 
@@ -91,12 +116,15 @@ export class Signup {
                 userName:this.loginUserName,
                 password:this.loginPassword
             }
-            this.httpClient.fetch(`login`, {
-                method: 'POST',
-                body: JSON.stringify(data)
-              }).then(response => response.json())
+            this.AuthService.login(this.loginUserName ,this.loginPassword)
+            // this.httpClient.fetch(`login`, {
+            //     method: 'POST',
+            //     body: JSON.stringify(data)
+            //   }).then(response => response.json())
                 .then(data => {
-                  this.router.navigateToRoute('dashboard');
+                  // this.router.navigateToRoute('dashboard');
+                  const root = PLATFORM.moduleName('app')
+                  this.aurelia.setRoot(root)
                   console.log(data);
                 });
         }
@@ -120,7 +148,7 @@ export class Signup {
   .ensure(a => a.firstName).required()
   .ensure(a => a.lastName).required()
   .ensure(a => a.userName).required()
-  .ensure(a => a.password).minLength(8).required().matches('/^[\].*/');
+  // .ensure(a => a.password).minLength(8).required().matches('/^[\].*/');
   // .matches((?=^.{6,255}$)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*)
   .on(Signup);
 
