@@ -4,6 +4,8 @@ import 'regenerator-runtime/runtime'
 import 'bootstrap'
 import environment from './environment'
 import { PLATFORM } from 'aurelia-pal'
+import AuthService from './auth-service'
+// require('./veiw/signup/signup')
 
 export function configure (aurelia) {
   aurelia.use
@@ -23,6 +25,14 @@ export function configure (aurelia) {
 
   // Anyone wanting to use HTMLImports to load views, will need to install the following plugin.
   // aurelia.use.plugin(PLATFORM.moduleName('aurelia-html-import-template-loader'));
-
-  aurelia.start().then(() => aurelia.setRoot(PLATFORM.moduleName('app')));
+  aurelia.start().then(() => {
+    var auth = aurelia.container.get(AuthService)
+    console.log(auth.isAuthenticated())
+    
+    const root = auth.isAuthenticated() ? PLATFORM.moduleName('app') : PLATFORM.moduleName('veiw/signup/signup')
+    aurelia.setRoot(root)
+  })
+  // const authService = aurelia.container.get(AuthService)
+  // aurelia.start().then(() => aurelia.setRoot(authService.authenticated ? PLATFORM.moduleName('auth') : PLATFORM.moduleName('app')))
+  // const root = ? AuthService.
 }
