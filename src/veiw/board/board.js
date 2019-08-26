@@ -50,6 +50,9 @@ export class Board {
     document.getElementById("button").style.display = "flex";
 
     let data = {name:this.tempBoard.name,done:false,ownerId:1  }
+
+    
+
       this.httpClient.fetch(`board`, {
       method: 'POST',
       body: JSON.stringify(data)
