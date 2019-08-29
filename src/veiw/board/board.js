@@ -49,7 +49,7 @@ export class Board {
     document.getElementById("myForm").style.display = "none";
     document.getElementById("button").style.display = "flex";
 
-    let data = {name:this.tempBoard.name,done:false,ownerId:1  }
+    let data = {name:this.tempBoard.name,done:false,ownerId:0 }
 
     
 
@@ -93,6 +93,7 @@ export class Board {
       .then (response => response.json())
       .then(data => {
         console.log(data);
+        console.log('kharrrrrrr');
         this.boards = data.map(element => Object.assign(new BoardModel(), element));
         
         });

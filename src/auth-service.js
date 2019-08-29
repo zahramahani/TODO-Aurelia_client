@@ -1,6 +1,7 @@
 import { Aurelia, inject } from 'aurelia-framework';
 import { HttpClient, json } from 'aurelia-fetch-client';
-// import config from 'config';
+// import config from 'config';     
+// require('./veiw/signup/signup')
 
 @inject(Aurelia, HttpClient)
 export default class AuthService {
@@ -62,7 +63,7 @@ export default class AuthService {
 
 
         // .. and set root to login.
-        this.app.setRoot('signup')
+        this.app.setRoot('veiw/signup/signup')
     }
 
     isAuthenticated() {

@@ -7,6 +7,7 @@ import {ValidationControllerFactory,ValidationRules} from 'aurelia-validation';
 import {BootstrapFormRenderer} from './../../bootstrap-form-renderer';
 import {Router} from 'aurelia-router';
 import AuthService from './../../auth-service'
+import { isNull } from 'util';
 @inject(ValidationControllerFactory,HttpClient,Router,AuthService,Aurelia)
 export class Signup {
     firstName
@@ -31,7 +32,7 @@ export class Signup {
       attached(){
         this.httpClient.configure(x =>{
           x
-          .withBaseUrl('http://localhost:3001/api/')
+          .withBaseUrl('http://partiya.todo.partdp.ir/api/')
           .withDefaults(
             {
               headers: {
@@ -61,7 +62,7 @@ export class Signup {
     }
 
     registerUser(){
-      this.httpClient.fetch('getUserRepeated?userName=' +this.userName)
+      this.httpClient.fetch(`getUserRepeated?userName=${this.userName}`) // change concatation to es6 ${}
       .then(response => response.json())
       .then(data => {
         if (Number(data) === 0) {
@@ -122,10 +123,12 @@ export class Signup {
             //     body: JSON.stringify(data)
             //   }).then(response => response.json())
                 .then(data => {
-                  // this.router.navigateToRoute('dashboard');
+                if(data.status==='OK'){
                   const root = PLATFORM.moduleName('app')
                   this.aurelia.setRoot(root)
+                  localStorage.setItem('token', data.token)
                   console.log(data);
+                }
                 });
         }
 
