@@ -3,7 +3,7 @@ import { inject } from 'aurelia-framework';
 import { PLATFORM } from 'aurelia-pal'
 import {Router} from 'aurelia-router';
 import AuthService from './auth-service'
-@inject(HttpClient,Router)
+@inject(HttpClient,Router,AuthService)
 export class App {
   constructor(httpClient,router,AuthService){
     this.httpClient=httpClient;
@@ -11,11 +11,18 @@ export class App {
     this.AuthService = AuthService;
   }
   logout(){
-    this.router.navigateToRoute('signup');
+    // this.router.navigateToRoute('signup');
+    this.AuthService.logout();
   }
   attached(){
     this.httpClient.configure(x =>{
-      x.withBaseUrl('http://localhost:3001/api/');
+      x.withBaseUrl('http://partiya.todo.partdp.ir/api/') 
+      .withDefaults(
+        {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('userToken')}`
+          }
+        })
       // x.withInterceptor({
       //   request(message) {
       //     return message;
@@ -33,9 +40,7 @@ export class App {
       { route: ['board'], name: 'board', moduleId: PLATFORM.moduleName('./veiw/board/board'), nav: true, title: 'Boards' },
       { route: ['todos'], name: 'todos', moduleId: PLATFORM.moduleName('./veiw/todos/todos'), nav: true, title: 'Todos' },
       { route: ['notFound'], name: 'notFound', moduleId: PLATFORM.moduleName('./veiw/notFound/notFound'), nav: false },
-      { route: ['signup'], name: 'signup', moduleId: PLATFORM.moduleName('./veiw/signup/signup') },
-      { route: ['signup'], name: 'logout', moduleId: PLATFORM.moduleName('./veiw/signup/signup'), nav: true, title: 'logout' }
-
+      { route: ['signup'], name: 'signup', moduleId: PLATFORM.moduleName('./veiw/signup/signup') }
     ])
     config.fallbackRoute('')
     config.mapUnknownRoutes('notFound')
