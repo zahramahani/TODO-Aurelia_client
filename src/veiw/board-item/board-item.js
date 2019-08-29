@@ -36,8 +36,33 @@ export class BoardItem {
 
   }
   attached() {
-    this.getOwnerName(this.board.ownerId)
-    this.fetchMember()
+    // debugger
+    console.log('vvvv');
+    this.httpClient.fetch('board/' +this.board.boardId)
+    .then(response => response.json())
+    .then(data => {
+      console.log('bbbb');
+      console.log(data);
+      this.board = data.map(element => Object.assign(new BoardModel(), element));
+      this.getOwnerName(this.board.ownerId)
+      // this.board.owner =this.
+      // this.temMember = new User(this.board.owner);
+      // this.board.addMember(this.temMember)
+      this.fetchMember(this.board.boardId)
+    });
+
+    //  this.httpClient.fetch('getuserIdByUserName?' +localStorage['userToken'])
+    // .then(response => response.json())
+    // .then(data => {
+    //   console.log(data);
+    //   this.board.ownerId=data;
+    //   // this.getOwnerName(this.board.ownerId)
+    //   this.board.owner =
+    //   this.temMember = new User(this.board.owner);
+    //   this.board.addMember(this.temMember)
+    //   this.fetchMember()
+    // });
+      
   }
 
   addMember() {
@@ -72,7 +97,7 @@ export class BoardItem {
                   body: JSON.stringify(this.temp)
                 }).then(response => response.json())
                   .then(data => {
-                    this.fetchMember();
+                    this.fetchMember(this.board.boardId);
                   });
               } else {
                 console.log("repeatedd")
@@ -97,8 +122,8 @@ export class BoardItem {
 
   }
 
-  fetchMember() {
-    this.httpClient.fetch('getMember?boardId=' + this.board.boardId)
+  fetchMember(id) {
+    this.httpClient.fetch('getMember?boardId=' + id)
       .then(response => response.json())
       .then(data => {
         console.log('here');
