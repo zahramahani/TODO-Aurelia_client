@@ -36,53 +36,11 @@ export class BoardItem {
 
   }
   attached() {
-    // debugger
-    console.log('vvvv');
-    this.httpClient.fetch('board/' +this.board.boardId)
-    .then(response => response.json())
-    .then(data => {
-      console.log('bbbb');
-      console.log(data);
-      this.board = data.map(element => Object.assign(new BoardModel(), element));
-      console.log(this.board);
-      this.getOwnerName(this.board.ownerId)
-      // this.httpClient.fetch('userName?userId=' +this.board.ownerId)
-      // .then(response => response.json())
-      // .then(dataTwo => {
-      //   // console.log(dataTwo)
-      //   this.board.owner = dataTwo;
-      //   this.temMember = new User(this.board.owner);
-      //   this.board.addMember(this.temMember)
-      // });
-      console.log(this.board);
-      // this.board.owner =this.
-      // this.temMember = new User(this.board.owner);
-      // this.board.addMember(this.temMember)
-      this.fetchMember(this.board.boardId)
-    });
-
-    //  this.httpClient.fetch('getuserIdByUserName?' +localStorage['userToken'])
-    // .then(response => response.json())
-    // .then(data => {
-    //   console.log(data);
-    //   this.board.ownerId=data;
-    //   // this.getOwnerName(this.board.ownerId)
-    //   this.board.owner =
-    //   this.temMember = new User(this.board.owner);
-    //   this.board.addMember(this.temMember)
-    //   this.fetchMember()
-    // });
-      
+    this.fetchMember(this.board.boardId)
+    this.getOwnerName(this.board.ownerId)
   }
-
   addMember() {
     if (this.add) {
-      // this.tempMember= new User(this.userName);
-      // this.board.addMember(this.tempMember);
-      // this.userName=null;
-      // this.firstName= null;
-      // this.lastName= null;
-
       this.httpClient.fetch('getuserIdByUserName?userName=' + this.userName)
         .then(response => response.json())
         .then(userIdData => {
@@ -121,27 +79,19 @@ export class BoardItem {
           console.log('yes')
           console.log(err)
         });
-
-
       // this.add = false;
       this.userName = null;
     }
     else {
       // this.add = true;
     }
-
   }
-
   fetchMember(id) {
     this.httpClient.fetch('getMember?boardId=' + id)
       .then(response => response.json())
       .then(data => {
-        console.log('here');
-        console.log(data);
-        //  this.userId = data;
         this.board.members = data.map(element => Object.assign(new User(), element));
       });
-
   }
 
   editBoardItem() {
@@ -149,40 +99,24 @@ export class BoardItem {
   }
   submit() {
     if (this.add) {
-
-
       this.controller.validate().then(result => {
         if (result.valid) {
-          console.log('valid');
           this.addMember();
-
-          console.log(result);
-          // this.title = 'add new task';
         } else {
-          console.log(result);
-          // this.add=true;
         }
       })
     } else {
       this.add = true;
     }
-    // .catch((e)=>{
-    //   console.log(e.stack);
-    // });
   }
   getOwnerName(id) {
     console.log(" in get owner name")
     this.httpClient.fetch('userName?userId=' + id)
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         this.board.owner = data;
-        this.temMember = new User(this.board.owner);
-        this.board.addMember(this.temMember)
       });
   }
-
-
 }
 ValidationRules
   .ensure(a => a.userName).required()
