@@ -86,6 +86,7 @@ export class Signup {
             });
         }else{
           this.repeated=true;
+          toastr.error('user name is inuse try new one')
         }
 
       });
