@@ -1,38 +1,38 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
-const project = require('./aurelia_project/aurelia.json');
-const { AureliaPlugin, ModuleDependenciesPlugin } = require('aurelia-webpack-plugin');
-const { ProvidePlugin } = require('webpack');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin')
+const project = require('./aurelia_project/aurelia.json')
+const { AureliaPlugin, ModuleDependenciesPlugin } = require('aurelia-webpack-plugin')
+const { ProvidePlugin } = require('webpack')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 // config helpers:
-const ensureArray = (config) => config && (Array.isArray(config) ? config : [config]) || [];
+const ensureArray = (config) => config && (Array.isArray(config) ? config : [config]) || []
 const when = (condition, config, negativeConfig) =>
-  condition ? ensureArray(config) : ensureArray(negativeConfig);
+  condition ? ensureArray(config) : ensureArray(negativeConfig)
 
 // primary config:
-const title = 'Aurelia Navigation Skeleton';
-const outDir = path.resolve(__dirname, project.platform.output);
-const srcDir = path.resolve(__dirname, 'src');
-const testDir = path.resolve(__dirname, 'test', 'unit');
-const nodeModulesDir = path.resolve(__dirname, 'node_modules');
-const baseUrl = '/';
+const title = 'Aurelia Navigation Skeleton'
+const outDir = path.resolve(__dirname, project.platform.output)
+const srcDir = path.resolve(__dirname, 'src')
+const testDir = path.resolve(__dirname, 'test', 'unit')
+const nodeModulesDir = path.resolve(__dirname, 'node_modules')
+const baseUrl = '/'
 
 const cssRules = [
-  { loader: 'css-loader' },
-];
+  { loader: 'css-loader' }
+]
 
 const sassRules = [
   {
-     loader: "sass-loader",
-     options: {
-       includePaths: ["node_modules"]
-     }
+    loader: 'sass-loader',
+    options: {
+      includePaths: ['node_modules']
+    }
   }
-];
+]
 
 module.exports = ({ production, server, extractCss, coverage, analyze, karma } = {}) => ({
   resolve: {
@@ -54,7 +54,7 @@ module.exports = ({ production, server, extractCss, coverage, analyze, karma } =
     chunkFilename: production ? '[name].[chunkhash].chunk.js' : '[name].[hash].chunk.js'
   },
   optimization: {
-    runtimeChunk: true,  // separates the runtime chunk, required for long term cacheability
+    runtimeChunk: true, // separates the runtime chunk, required for long term cacheability
     // moduleIds is the replacement for HashedModuleIdsPlugin and NamedModulesPlugin deprecated in https://github.com/webpack/webpack/releases/tag/v4.16.0
     // changes module id's to use hashes be based on the relative path of the module, required for long term cacheability
     moduleIds: 'hashed',
@@ -62,7 +62,7 @@ module.exports = ({ production, server, extractCss, coverage, analyze, karma } =
     // https://webpack.js.org/plugins/split-chunks-plugin/
     splitChunks: {
       hidePathInfo: true, // prevents the path from being used in the filename when using maxSize
-      chunks: "initial",
+      chunks: 'initial',
       // sizes are compared against source before minification
       maxInitialRequests: Infinity, // Default is 3, make this unlimited if using HTTP/2
       maxAsyncRequests: Infinity, // Default is 5, make this unlimited if using HTTP/2
@@ -90,26 +90,26 @@ module.exports = ({ production, server, extractCss, coverage, analyze, karma } =
         // generic 'initial/sync' vendor node module splits: separates out larger modules
         vendorSplit: { // each node module as separate chunk file if module is bigger than minSize
           test: /[\\/]node_modules[\\/]/,
-          name(module) {
+          name (module) {
             // Extract the name of the package from the path segment after node_modules
-            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
-            return `vendor.${packageName.replace('@', '')}`;
+            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
+            return `vendor.${packageName.replace('@', '')}`
           },
           priority: 20
         },
         vendors: { // picks up everything else being used from node_modules that is less than minSize
           test: /[\\/]node_modules[\\/]/,
-          name: "vendors",
+          name: 'vendors',
           priority: 19,
           enforce: true // create chunk regardless of the size of the chunk
         },
         // generic 'async' vendor node module splits: separates out larger modules
         vendorAsyncSplit: { // vendor async chunks, create each asynchronously used node module as separate chunk file if module is bigger than minSize
           test: /[\\/]node_modules[\\/]/,
-          name(module) {
+          name (module) {
             // Extract the name of the package from the path segment after node_modules
-            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
-            return `vendor.async.${packageName.replace('@', '')}`;
+            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
+            return `vendor.async.${packageName.replace('@', '')}`
           },
           chunks: 'async',
           priority: 10,
@@ -126,10 +126,10 @@ module.exports = ({ production, server, extractCss, coverage, analyze, karma } =
         },
         // generic 'async' common module splits: separates out larger modules
         commonAsync: { // common async chunks, each asynchronously used module a separate chunk file if module is bigger than minSize
-          name(module) {
+          name (module) {
             // Extract the name of the module from last path component. 'src/modulename/' results in 'modulename'
-            const moduleName = module.context.match(/[^\\/]+(?=\/$|$)/)[0];
-            return `common.async.${moduleName.replace('@', '')}`;
+            const moduleName = module.context.match(/[^\\/]+(?=\/$|$)/)[0]
+            return `common.async.${moduleName.replace('@', '')}`
           },
           minChunks: 2, // Minimum number of chunks that must share a module before splitting
           chunks: 'async',
@@ -206,7 +206,7 @@ module.exports = ({ production, server, extractCss, coverage, analyze, karma } =
         use: extractCss ? [{
           loader: MiniCssExtractPlugin.loader
         }, ...cssRules, ...sassRules
-        ]: ['style-loader', ...cssRules, ...sassRules],
+        ] : ['style-loader', ...cssRules, ...sassRules],
         issuer: /\.[tj]s$/i
       },
       {
@@ -216,7 +216,9 @@ module.exports = ({ production, server, extractCss, coverage, analyze, karma } =
       },
       { test: /\.html$/i, loader: 'html-loader' },
       {
-        test: /\.js$/i, loader: 'babel-loader', exclude: nodeModulesDir,
+        test: /\.js$/i,
+loader: 'babel-loader',
+exclude: nodeModulesDir,
         options: coverage ? { sourceMap: 'inline', plugins: ['istanbul'] } : {}
       },
       // embed small images and fonts as Data Urls and larger ones as files:
@@ -224,7 +226,7 @@ module.exports = ({ production, server, extractCss, coverage, analyze, karma } =
       { test: /\.woff2(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff2' } },
       { test: /\.woff(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff' } },
       // load these fonts normally, as files:
-      { test: /\.(ttf|eot|svg|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'file-loader' },
+      { test: /\.(ttf|eot|svg|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'file-loader' }
     ]
   },
   plugins: [
@@ -233,7 +235,8 @@ module.exports = ({ production, server, extractCss, coverage, analyze, karma } =
     new ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
-      'Promise': ['promise-polyfill', 'default']
+      Promise: ['promise-polyfill', 'default'],
+      toastr: 'toastr'
     }),
     new ModuleDependenciesPlugin({
       'aurelia-testing': ['./compile-spy', './view-spy']
@@ -254,4 +257,4 @@ module.exports = ({ production, server, extractCss, coverage, analyze, karma } =
       { from: 'static', to: outDir, ignore: ['.*'] }])), // ignore dot (hidden) files
     ...when(analyze, new BundleAnalyzerPlugin())
   ]
-});
+})
