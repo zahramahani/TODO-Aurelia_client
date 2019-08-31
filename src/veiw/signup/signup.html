@@ -38,17 +38,19 @@
                         <div class="loginPageContent">
                             <h2>LOG IN</h2>
                             <div class="form-group">
-                            <div class="input-container">
+                            <div class="input-container" validation-errors.bind="userNameErr">
                                 <img class="icon" src="./member.png"></i>
                                     <input value.bind="loginUserName & validateOnChange" class="input-field" type="text"
-                                        placeholder="Username" name="Username">
+                                        placeholder="Username" name="loginUsername">
+                                    <span repeat.for="errorItem of userNameErr" style="display:flex; flex-direction:column; justify-content:center;font-size:10px; color:red">${errorItem.error.message}</span>
                                 </div>
                             </div>
                             <div class="form-group">
-                            <div class="input-container">
+                            <div class="input-container" validation-errors.bind="passwordErr">
                                 <img class="icon" src="./password.png">
-                                <input value.bind="loginPassword & validateOnChange" class="input-field" type="password"
-                                    placeholder="Password" name="email">
+                                <input value.bind="loginPassword & validateOnChange" class="input-field" type="Password"
+                                    placeholder="Password" name="loginPassword">
+                                    <span repeat.for="errorItem of passwordErr" style="display:flex; flex-direction:column; justify-content:center;font-size:10px; color:red">${errorItem.error.message}</span>
                             </div>
                             </div>
                             <button click.delegate="loginSubmit()" type="submit" class="loginBtn">Login</button>
@@ -61,33 +63,37 @@
                         <form action="">
                             <h2>SIGN UP</h2>
                             <div class="form-group">
-                            <div class="input-container">
+                            <div class="input-container" validation-errors.bind="firstNameErr">
                                 <img class="icon" src="./member.png">
                                     <input value.bind="firstName & validateOnChange" class="input-field" type="text"
                                         placeholder="First Name" name="usrnm">
+                                        <span repeat.for="errorItem of firstNameErr" style="display:flex; flex-direction:column; justify-content:center;font-size:10px; color:red">${errorItem.error.message}</span>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                            <div class="input-container">
+                            <div class="input-container"validation-errors.bind="lastNameErr">
                                 <img class="icon" src="./member.png">
                                     <input value.bind="lastName & validateOnChange" class="input-field" type="text"
                                         placeholder="Last name" name="email">
+                                        <span repeat.for="errorItem of lastNameErr" style="display:flex; flex-direction:column; justify-content:center;font-size:10px; color:red">${errorItem.error.message}</span>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                            <div class="input-container">
+                            <div class="input-container" validation-errors.bind="signUpUsernameErr">
                                 <img class="icon" src="./member.png"></i>
                                     <input value.bind="userName & validateOnChange" class="input-field" type="text"
-                                        placeholder="Username" name="username">
+                                        placeholder="Username" name="signUp username">
+                                        <span repeat.for="errorItem of signUpUsernameErr" style="display:flex; flex-direction:column; justify-content:center;font-size:10px; color:red">${errorItem.error.message}</span>
                                 </div>
                             </div>
                             <div class="form-group">
-                            <div class="input-container">
+                            <div class="input-container" validation-errors.bind="SUpasswordErr">
                                 <img class="icon" src="./password.png">
-                                    <input value.bind="password & validateOnChange" class="input-field" type="password"
-                                        placeholder="Password" name="password">
+                                    <input value.bind="password & validateOnChange" class="input-field" type="Password"
+                                        placeholder="Password" name="signUp password">
+                                        <span repeat.for="errorItem of SUpasswordErr" style="display:flex; flex-direction:column; justify-content:center;font-size:10px; color:red">${errorItem.error.message}</span>
                                 </div>
                             </div>
 

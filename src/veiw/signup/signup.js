@@ -1,14 +1,14 @@
 import './signup.scss'
-import { inject } from 'aurelia-framework';
+import { inject, NewInstance } from 'aurelia-framework';
 import{ Aurelia } from 'aurelia-framework';
 import { HttpClient, json } from 'aurelia-fetch-client';
 import {validationMessages} from 'aurelia-validation';
-import {ValidationControllerFactory,ValidationRules} from 'aurelia-validation';
+import {ValidationController,ValidationRules, validateTrigger } from 'aurelia-validation';
 import {BootstrapFormRenderer} from './../../bootstrap-form-renderer';
 import {Router} from 'aurelia-router';
 import AuthService from './../../auth-service'
 import { isNull } from 'util';
-@inject(ValidationControllerFactory,HttpClient,Router,AuthService,Aurelia)
+@inject(NewInstance.of(ValidationController),HttpClient,Router,AuthService,Aurelia)
 export class Signup {
     firstName
     lastName
@@ -20,10 +20,12 @@ export class Signup {
     loginFlag = true;
     signupFlag = false;
 
-    constructor (controllerFactory,httpClient,router,AuthService,Aurelia) {
-      this.controller = controllerFactory.createForCurrentScope();
+    constructor (controller,httpClient,router,AuthService,Aurelia) {
+      // this.controller = controllerFactory.createForCurrentScope();
+      this.controller=controller;
+      this.controller.validateTrigger = validateTrigger.changeOrBlur;
       this.httpClient=httpClient;
-        this.controller.addRenderer(new BootstrapFormRenderer());
+        // this.controller.addRenderer(new BootstrapFormRenderer());
         this.router=router
         this.AuthService = AuthService
         this.aurelia =  Aurelia
@@ -138,13 +140,17 @@ export class Signup {
             //     body: JSON.stringify(data)
             //   }).then(response => response.json())
                 .then(data => {
-                if(data.status==='OK'){
+                  debugger
+                if(data.status ==='OK'){
                   const root = PLATFORM.moduleName('app')
                   this.aurelia.setRoot(root)
                   localStorage.setItem('token', data.token)
                   console.log(data);
                 }
-                });
+                else if(data.statusCode === 400 ){
+                  console.log("im here");
+                  toastr.error('enter valid username')}
+                })
         }
 
         loginSubmit() {
@@ -161,11 +167,13 @@ export class Signup {
         }
     }
   ValidationRules
-  .ensure(a => a.loginUserName).required()
-  .ensure(a => a.loginPassword).required()
-  .ensure(a => a.firstName).required()
-  .ensure(a => a.lastName).required()
-  .ensure(a => a.userName).required()
+  .ensure(a => a.loginUserName).required().withMessage('\${$displayName} cannot be blank.')
+  .ensure(a => a.loginPassword).required().withMessage('\${$displayName} cannot be blank.')
+  .ensure(a => a.firstName).required().withMessage('\${$displayName} cannot be blank.')
+  .ensure(a => a.lastName).required().withMessage('\${$displayName} cannot be blank.')
+  .ensure(a => a.userName).required().withMessage('\${$displayName} cannot be blank.')
+  .ensure(a => a.password).required().withMessage('\${$displayName} cannot be blank.')
+
   // .ensure(a => a.password).minLength(8).required().matches('/^[\].*/');
   // .matches((?=^.{6,255}$)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*)
   .on(Signup);
