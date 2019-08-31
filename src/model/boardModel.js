@@ -11,9 +11,9 @@ export class BoardModel {
     members=[];
     todos=[];
     addUser=true;
-    constructor(name,owner) {
+    constructor(name) {
       this.name = name;
-      this.owner = owner;
+    //   this.owner = owner;
     }
     addMember(member){
         this.members.push(member);
