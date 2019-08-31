@@ -90,7 +90,7 @@ export class Signup {
             });
         }else{
           this.repeated=true;
-          toastr.info('enter new username')
+          toastr.error('user name is inuse try new one')
         }
 
       });

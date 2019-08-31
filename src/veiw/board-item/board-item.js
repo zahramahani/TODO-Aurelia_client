@@ -44,7 +44,17 @@ export class BoardItem {
       console.log('bbbb');
       console.log(data);
       this.board = data.map(element => Object.assign(new BoardModel(), element));
+      console.log(this.board);
       this.getOwnerName(this.board.ownerId)
+      // this.httpClient.fetch('userName?userId=' +this.board.ownerId)
+      // .then(response => response.json())
+      // .then(dataTwo => {
+      //   // console.log(dataTwo)
+      //   this.board.owner = dataTwo;
+      //   this.temMember = new User(this.board.owner);
+      //   this.board.addMember(this.temMember)
+      // });
+      console.log(this.board);
       // this.board.owner =this.
       // this.temMember = new User(this.board.owner);
       // this.board.addMember(this.temMember)
