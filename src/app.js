@@ -23,6 +23,17 @@ export class App {
             'Authorization': `Bearer ${localStorage.getItem('userToken')}`
           }
         })
+        .withInterceptor({
+          responseError(error) {
+             if(error.status === 400){
+               toastr.error('some thing wronge try again')
+             }else if(error.status === 401){
+               toastr.error('you are unauthoriz please log in')
+             }else if(error.status === 404){
+               toastr.error('your request is not available')
+             }
+              }
+        })
       // x.withInterceptor({
       //   request(message) {
       //     return message;

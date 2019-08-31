@@ -82,6 +82,10 @@ export class Signup {
             // this.router.navigateToRoute('dashboard'); 
             this.loginFlag = true;
             this.signupFlag = false;
+            this.firstName = "";
+            this.lastName = "";
+            this.userName = "";
+            this.password = "";
 
             });
         }else{
@@ -99,10 +103,6 @@ export class Signup {
               console.log('valid');
               this.registerUser();
               console.log(result);
-              this.firstName = "";
-              this.lastName = "";
-              this.userName = "";
-              this.password = "";
 
             } else {
               console.log(result);

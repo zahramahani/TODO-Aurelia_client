@@ -6,6 +6,7 @@ import environment from './environment'
 import { PLATFORM } from 'aurelia-pal'
 import AuthService from './auth-service'
 import '../node_modules/toastr/build/toastr.css'
+
 // require('./veiw/signup/signup')
 
 export function configure (aurelia) {
