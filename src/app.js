@@ -11,7 +11,6 @@ export class App {
     this.AuthService = AuthService;
   }
   logout() {
-    // this.router.navigateToRoute('signup');
     this.AuthService.logout();
   }
   attached() {
@@ -23,33 +22,7 @@ export class App {
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('userToken')}`
             }
-          })
-        .withInterceptor({
-          // request(request){
-          // request.headers.append('Authorization', `Bearer ${localStorage.getItem('userToken')}`)
-          // return request;
-          // },
-          responseError(error) {
-        
-            console.log('interseptoe66666666666666666')
-            console.log(error)
-            if (error.status === 400) {
-              toastr.error('some thing wronge try again')
-            } else if (error.status === 401) {
-              toastr.error('you are unauthoriz please log in')
-            } else if (error.status === 404) {
-              toastr.error('your request is not available')
-            }
-          }
-        })
-      // x.withInterceptor({
-      //   request(message) {
-      //     return message;
-      //   },
-      //   responseError(error) {
-      //   throw error;
-      //   }
-      //   }); 
+          }) 
     })
   }
   configureRouter(config, router) {
