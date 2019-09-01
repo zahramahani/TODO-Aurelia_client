@@ -1,3 +1,4 @@
+import './app.scss'
 import { HttpClient } from 'aurelia-fetch-client';
 import { inject } from 'aurelia-framework';
 import { PLATFORM } from 'aurelia-pal'
@@ -16,7 +17,7 @@ export class App {
   attached() {
     this.httpClient.configure(x => {
       // x.withBaseUrl('http://partiya.todo.partdp.ir/api/') 
-      x.withBaseUrl('http://localhost:3001/api/')
+      x.withBaseUrl('http://localhost:3004/api/')
         .withDefaults(
           {
             headers: {

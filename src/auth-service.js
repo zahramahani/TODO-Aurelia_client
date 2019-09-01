@@ -13,7 +13,7 @@ export default class AuthService {
     // load it into the session object on the AuthService.
     constructor(Aurelia, HttpClient) {
         HttpClient.configure(http => {
-            http.withBaseUrl('http://localhost:3001/api/');
+            http.withBaseUrl('http://localhost:3004/api/');
         });
 
         this.httpClient = HttpClient;
@@ -29,10 +29,11 @@ export default class AuthService {
                 userName: user,
                 password: passwd
             })
-        });
-        const data = await response.json();
+        })
+        const data = await response.json()
         // debugger
         localStorage.setItem('userToken', data.token);
+        console.log(data);
         return data;
     }
 
