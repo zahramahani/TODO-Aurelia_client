@@ -34,7 +34,7 @@ export class Signup {
       attached(){
         this.httpClient.configure(x =>{
           x
-          .withBaseUrl('http://localhost:3001/api/')
+          .withBaseUrl('http://localhost:3004/api/')
           // .withBaseUrl('http://partiya.todo.partdp.ir/api/') 
           .withDefaults(
             {
@@ -94,7 +94,11 @@ export class Signup {
           //   body: JSON.stringify(signupData)
           // }).then(response => response.json())
             .then(data => {
-            console.log("regdone");
+              console.log(data);
+              if (data.type === 'userSignupError'){
+                toastr.error('username is used befor enter new username')
+              }
+            // console.log("regdone");
             // this.router.navigateToRoute('dashboard'); 
             this.loginFlag = true;
             this.signupFlag = false;
@@ -145,12 +149,18 @@ export class Signup {
                   const root = PLATFORM.moduleName('app')
                   this.aurelia.setRoot(root)
                   localStorage.setItem('token', data.token)
-                  console.log(data);
                 }
-                else if(data.statusCode === 400 ){
-                  console.log("im here");
-                  toastr.error('enter valid username')}
-                })
+                if (data.type === 'errorLogin'){
+                  toastr.error('password in not valid')
+                }
+                if(data.type === 'userameErrorLogin'){
+                  toastr.error('username is not valid')
+                }
+              
+                  // console.log("im here");
+                  // toastr.error('enter valid username')}
+              }
+             )
         }
 
         loginSubmit() {
@@ -167,12 +177,21 @@ export class Signup {
         }
     }
   ValidationRules
-  .ensure(a => a.loginUserName).required().withMessage('\${$displayName} cannot be blank.')
-  .ensure(a => a.loginPassword).required().withMessage('\${$displayName} cannot be blank.')
-  .ensure(a => a.firstName).required().withMessage('\${$displayName} cannot be blank.')
-  .ensure(a => a.lastName).required().withMessage('\${$displayName} cannot be blank.')
-  .ensure(a => a.userName).required().withMessage('\${$displayName} cannot be blank.')
-  .ensure(a => a.password).required().withMessage('\${$displayName} cannot be blank.')
+  .ensure(a => a.loginUserName)
+    .required().withMessage('\${$displayName} cannot be blank.')
+  .ensure(a => a.loginPassword)
+    .required().withMessage('\${$displayName} cannot be blank.')
+  .ensure(a => a.firstName)
+    .required().withMessage('\${$displayName} cannot be blank.')
+  .ensure(a => a.lastName)
+    .required().withMessage('\${$displayName} cannot be blank.')
+  .ensure(a => a.userName)
+    .required().withMessage('\${$displayName} cannot be blank.')
+  .ensure(a => a.password)
+    .required().withMessage('\${$displayName} cannot be blank.')
+    .minLength(8)
+    .then()
+    .matches(/^.(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&?@ "]).*$/).withMessage('\${$displayName} use at least one uppercase,one lowercase,one digit and one speical charecter')
 
   // .ensure(a => a.password).minLength(8).required().matches('/^[\].*/');
   // .matches((?=^.{6,255}$)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*)
