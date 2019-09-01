@@ -20,6 +20,8 @@ export class Dashboard {
       .then(data => {
         console.log(data);
         this.boards = data.map(element => Object.assign(new BoardModel(), element));
+        console.log('boards');
+        console.log(this.boards);
       });
   }
   constructor(httpClient) {
