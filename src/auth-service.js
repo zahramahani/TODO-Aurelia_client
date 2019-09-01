@@ -31,7 +31,7 @@ export default class AuthService {
             })
         });
         const data = await response.json();
-        debugger
+        // debugger
         localStorage.setItem('userToken', data.token);
         return data;
     }
