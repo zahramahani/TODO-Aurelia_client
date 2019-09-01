@@ -56,11 +56,12 @@ export class BoardItem {
             body: JSON.stringify(this.temp)
           }).then(response => response.json())
             .then(data => {
-              if(data.name="error"){
-                toastr.error("member was added before")
-              }else{
+              // console.log(data)
+              // if(data.name="error"){
+              //   toastr.error("member was added before")
+              // }else{
               this.fetchMember(this.board.boardId);
-              }
+              // }
             });
           }
         });
