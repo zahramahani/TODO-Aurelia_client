@@ -34,8 +34,8 @@ export class Signup {
       attached(){
         this.httpClient.configure(x =>{
           x
-          // .withBaseUrl('http://localhost:3001/api/')
-          .withBaseUrl('http://partiya.todo.partdp.ir/api/') 
+          .withBaseUrl('http://localhost:3001/api/')
+          // .withBaseUrl('http://partiya.todo.partdp.ir/api/') 
           .withDefaults(
             {
               headers: {
@@ -140,7 +140,7 @@ export class Signup {
             //     body: JSON.stringify(data)
             //   }).then(response => response.json())
                 .then(data => {
-                  debugger
+                  // debugger
                 if(data.status ==='OK'){
                   const root = PLATFORM.moduleName('app')
                   this.aurelia.setRoot(root)
