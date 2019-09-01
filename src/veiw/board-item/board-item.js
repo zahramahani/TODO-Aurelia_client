@@ -98,6 +98,20 @@ export class BoardItem {
         this.board.owner = data;
       });
   }
+
+deleteMember(userName){ this.httpClient.fetch('getuserIdByUserName?userName=' + userName)
+.then(response => response.json())
+.then(userIdData => {
+  if (confirm('Are you sure you want to delete this member?')){
+    this.httpClient.fetch(`deleteMemberFromBoard/${this.board.boardId}-${userIdData}`, {
+      method: 'DELETE'
+    }) .then (response => response.json())
+    .then(data => {
+      this.fetchMember(this.board.boardId);
+      });
+    }
+    });
+}
 }
 ValidationRules
   .ensure(a => a.userName).required()

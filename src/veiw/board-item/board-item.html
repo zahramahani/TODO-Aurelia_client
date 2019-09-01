@@ -1,40 +1,47 @@
 <template>
 
-  <div class="mainBoard">
-    <div class="div_mainBoardContent">
-        <div class="div_BoardNumber">${board.name}</div>
-        <div class="div_owner"><strong>OWNER</strong>
-            <li>${board.owner}</li>
+    <div class="mainBoard">
+        <div class="div_mainBoardContent">
+            <div class="div_BoardNumber">${board.name}</div>
+            <div class="div_owner"><strong>OWNER</strong>
+                <li>${board.owner}</li>
+            </div>
         </div>
-    </div>
-    <div class="InternalBoard">
-        <div class="div_internalBoardContent">
-            <div class="div_imgMember"><img src="pic.png" alt="MemberIcon"></div>
-            <div class="div_memberPosition">Member</div>
-            <div  class="div_name_scroll">
-                <div repeat.for="member of board.members">
-                <li>${member.userName}</li>
-            </div>
-            </div>
-              
-            <div class="internal-form-popup" >
-                <form action="" class="internal-form-content" id="Form" show.bind="add">
-                    <div class="form-group">
-                        <input type="text" class="internal-input" value.bind="userName & validate" placeholder="Enter members userName" name="userName" required>
+        <div class="InternalBoard">
+            <div class="div_internalBoardContent">
+                <div class="div_imgMember"><img src="pic.png" alt="MemberIcon"></div>
+                <div class="div_memberPosition">Member</div>
+                <div class="div_name_scroll">
+                    <div repeat.for="member of board.members">
+                    <div class="memberColumn" >
+                        <li>${member.userName}</li>
+                        <button class="memberDelete" click.delegate="deleteMember(member.userName)">-</button>
                     </div>
-                    <!-- <div class="div_MemberButton"><button class="MemberButton" type="submit"click.delegate="submit()">+</button></div> -->
-                </form>
-                <p if.bind="enterUsername">enter an exist username please!</p>
-                <p if.bind="repeated">this username was added before</p>
-                <div class="div_MemberButton"><button class="MemberButton" type="submit"click.delegate="submit()">+</button></div>            
+                    <hr class="break">
+                    </div>
+                  
+                </div>
+
+                <div class="internal-form-popup">
+                    <form action="" class="internal-form-content" id="Form" show.bind="add">
+                        <div class="form-group">
+                            <input type="text" class="internal-input" value.bind="userName & validate"
+                                placeholder="Enter members userName" name="userName" required>
+                        </div>
+                        <!-- <div class="div_MemberButton"><button class="MemberButton" type="submit"click.delegate="submit()">+</button></div> -->
+                    </form>
+                    <p if.bind="enterUsername">enter an exist username please!</p>
+                    <p if.bind="repeated">this username was added before</p>
+                    <div class="div_MemberButton"><button class="MemberButton" type="submit"
+                            click.delegate="submit()">+</button></div>
+                </div>
+
+
+
+
+                <!-- <div class="div_MemberButton"><button class="MemberButton">+</button></div> -->
             </div>
-          
-
-
-
-            <!-- <div class="div_MemberButton"><button class="MemberButton">+</button></div> -->
         </div>
     </div>
-</div>
 
 </template>

@@ -135,10 +135,30 @@ $info:#0097A7;
                     max-height: 100%;
                     // padding: 20px;
                     box-sizing: border-box;
+                    .memberColumn{
+                        display: flex;
+                        flex-direction:row;
+                        justify-content: space-between;
+                        .memberDelete{
+                            cursor: pointer;
+                            background: $addBtn;
+                            border: none;
+                            border-radius: 20px;
+                            float: right;
+                            color:white;
+                            box-sizing:border-box;
+                            height:40px;
+                            width: 40px;
+                            margin-right: 2px;
+                        }
+                    }
+                    .break{
+                        color: black;
+                    }
                 }
                 .internal-form-popup{
                     display: flex;
-                    flex-direction: column;
+                    flex-direction:row;
                 .div_MemberButton{
 
                     // background-color: black;
@@ -174,8 +194,8 @@ $info:#0097A7;
                         background-color: $back-color;
                         // margin-left:10px;
                         // padding-left:5px;
-                        width:200px;
-                        @include textOverFlow(200px);
+                        width:150px;
+                        @include textOverFlow(150px);
                         // min-width: 200px;
                     }
             }
