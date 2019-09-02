@@ -35,6 +35,13 @@ $toDoTitle:#178294;
             color: white;
             margin-left: 10px;
        }
+       .edit:before{
+        font-family: FontAwesome;
+        font-size: 24px;
+        content: "\f040";
+        color: white;
+        margin-left: 5px;
+       }
 
     }
     .modal {

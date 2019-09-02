@@ -1,10 +1,16 @@
 <template>
   <require from = "./../task/task"></require> 
   <div class="todo">
-    <p class="head  ${isDone ? 'done' : ''}">${todo.name}
-    <label class="trash" click.delegate="selectRemove(todo.todoId)"></label></p>
+    <p if.bind = "!editFlag" class="head  ${isDone ? 'done' : ''}">${todo.name}
+    <label class="trash" click.delegate="selectRemove(todo.todoId)"></label>
+    <label class="edit" click.delegate="edit()"></label></p>
+    <!-- <input placeholder=" enter new task name" class="addDo" value.bind = "text & validate"> -->
+    <div if.bind = "editFlag" class="form-group">
+      <input placeholder=" enter new todo name " class="addDo" value.bind = "newTodoName & validate">
+      <button click.delegate="editRequest(todo.todoId)" class="btnAdd" >+</button>
+    </div>
     <div class="form-group">
-      <input placeholder=" add new task" class="addDo" value.bind = "text & validate">
+      <input  placeholder=" add new task" class="addDo" value.bind = "text & validate">
       <button click.delegate="submit()" class="btnAdd">+</button>
     </div>
     <!-- <hr> -->
