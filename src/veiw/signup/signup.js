@@ -34,8 +34,8 @@ export class Signup {
       attached(){
         this.httpClient.configure(x =>{
           x
-          .withBaseUrl('http://localhost:3004/api/')
-          // .withBaseUrl('http://partiya.todo.partdp.ir/api/') 
+          // .withBaseUrl('http://localhost:3004/api/')
+          .withBaseUrl('http://partiya.todo.partdp.ir/api/') 
           .withDefaults(
             {
               headers: {
