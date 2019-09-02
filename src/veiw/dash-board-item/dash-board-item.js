@@ -1,6 +1,6 @@
 import './dash-board-item.scss'
 import { bindable } from "aurelia-framework"
-import { Todo } from '../../model/todo'
+import { TodoModel } from '../../model/todoModel'
 import { HttpClient, json } from 'aurelia-fetch-client';
 import { inject } from 'aurelia-framework';
 import {Router} from 'aurelia-router';
