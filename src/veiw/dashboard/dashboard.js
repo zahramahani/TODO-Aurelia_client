@@ -1,6 +1,6 @@
 import './dashboard.scss'
 import { BoardModel } from '../../model/boardModel'
-import { Todo } from '../../model/todo'
+import { TodoModel } from '../../model/todoModel'
 import { User } from '../../model/user'
 import { Task } from './../../model/task'
 import { HttpClient, json } from 'aurelia-fetch-client';

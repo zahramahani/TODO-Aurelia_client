@@ -1,6 +1,7 @@
 import './todo.scss'
 import { bindable } from "aurelia-framework"
 import { Task } from '../../model/task';
+import { TodoModel } from '../../model/todoModel';
 
 // validation_part
 // import {inject} from 'aurelia-dependency-injection';
@@ -17,7 +18,8 @@ import { inject } from 'aurelia-framework';
 export class Todo {
   @bindable todo
   @bindable deleteTodo
-
+  editFlag = false
+  newTodoName='';
   isDone
   text = '';
   // validation part
@@ -63,6 +65,37 @@ export class Todo {
       this.deleteTodo(id);
     }
     // document.getElementById("mytodoModal").style.display = "block";
+  }
+  edit(){
+    this.editFlag = true
+  }
+
+  editRequest(id){
+    // this.editFlag = false
+    let data={
+      boardId:this.todo.boardId,
+      complete:true,
+      title:this.newTodoName}
+      // console.log('one')
+    // console.log(this.task.taskId)
+    this.httpClient.fetch(`todo/${this.todo.todoId}`, {
+      method: 'PUT',
+      body:json(data)
+    }) .then (response => response.json())
+    .then(data => {
+      // console.log('changed')
+      this.httpClient.fetch(`todo/${this.todo.todoId}`)
+      .then (response => response.json())
+      .then(data => {
+        console.log('kharrrrrrr')
+        console.log(data)
+        this.todo= data.map(element => Object.assign(new TodoModel(), element));
+        console.log(this.todo)
+       
+        });
+      });
+      this.editFlag = false
+
   }
   constructor(controllerFactory, httpClient) {
     // http_part

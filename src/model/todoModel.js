@@ -1,5 +1,5 @@
 
-export class Todo {
+export class TodoModel {
     name;
     tasks = [];
     done = null;

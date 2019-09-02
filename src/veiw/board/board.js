@@ -1,6 +1,6 @@
 import './board.scss'
 import { BoardModel } from '../../model/boardModel'
-import { Todo } from './../../model/todo'
+import { TodoModel } from '../../model/todoModel'
 import { Task } from './../../model/task'
 import { timeout } from 'q';
 // validation_part

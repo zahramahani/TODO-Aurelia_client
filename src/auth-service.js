@@ -13,7 +13,7 @@ export default class AuthService {
     // load it into the session object on the AuthService.
     constructor(Aurelia, HttpClient) {
         HttpClient.configure(http => {
-            http.withBaseUrl('http://localhost:3004/api/');
+            http.withBaseUrl('http://partiya.todo.partdp.ir/api/');
         });
 
         this.httpClient = HttpClient;

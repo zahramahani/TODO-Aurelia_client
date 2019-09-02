@@ -16,8 +16,8 @@ export class App {
   }
   attached() {
     this.httpClient.configure(x => {
-      // x.withBaseUrl('http://partiya.todo.partdp.ir/api/') 
-      x.withBaseUrl('http://localhost:3004/api/')
+      x.withBaseUrl('http://partiya.todo.partdp.ir/api/') 
+      // x.withBaseUrl('http://localhost:3004/api/')
         .withDefaults(
           {
             headers: {

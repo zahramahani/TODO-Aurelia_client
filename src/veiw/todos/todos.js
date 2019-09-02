@@ -1,6 +1,6 @@
 import './todos.scss'
 import { BoardModel } from '../../model/boardModel'
-import { Todo } from './../../model/todo'
+import { TodoModel } from '../../model/todoModel'
 import { Task } from './../../model/task'
 // validation_part
 // import {inject} from 'aurelia-dependency-injection';
@@ -70,7 +70,7 @@ export class Todos {
           .then(response => response.json())
           .then(data => {
             console.log('todos' + data);
-            this.board.todos = data.map(element => Object.assign(new Todo(), element));
+            this.board.todos = data.map(element => Object.assign(new TodoModel(), element));
           });
       });
 
@@ -81,7 +81,7 @@ export class Todos {
       .then(response => response.json())
       .then(data => {
         console.log(data);
-        this.board.todos = data.map(element => Object.assign(new Todo(), element));
+        this.board.todos = data.map(element => Object.assign(new TodoModel(), element));
       });
   }
 
