@@ -125,8 +125,8 @@ export class Todos {
     this.controller.validate().then(result => {
       if (result.valid) {
         this.flag = false;
-        console.log(this.board)
-        console.log('lksn' + this.board.boardId);
+        // console.log(this.board)
+        // console.log('lksn' + this.board.boardId);
         this.addTodo(this.board);
         // this.title = 'add new task';
         console.log(result);
