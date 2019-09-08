@@ -14,6 +14,7 @@ export default class AuthService {
     constructor(Aurelia, HttpClient) {
         HttpClient.configure(http => {
             http.withBaseUrl('http://partiya.todo.partdp.ir/api/');
+            // http.withBaseUrl('http://localhost:3004/api/');
         });
 
         this.httpClient = HttpClient;
